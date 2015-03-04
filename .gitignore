@@ -50,3 +50,9 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# Android Studio
+
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
