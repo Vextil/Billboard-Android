@@ -1,0 +1,284 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        style="@style/header"
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/header_text"
+            android:text="@string/funcion_informacion"
+            android:id="@+id/headerText" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/card_padding_left"
+        android:paddingRight="@dimen/card_padding_right"
+        android:paddingTop="@dimen/card_padding_top"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent">
+
+            <ImageView
+                android:layout_width="112.94117647058824616124dp"
+                android:layout_height="160dp"
+                android:id="@+id/funcionPoster"
+                android:transitionName="funcionPoster"/>
+
+            <LinearLayout
+                android:layout_toRightOf="@id/funcionPoster"
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/row1"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="2dp"
+                    android:paddingLeft="8dp"
+                    android:paddingBottom="3dp">
+
+                    <com.siercuit.cartelera.views.SmileyRatingView
+                        android:id="@+id/funcionRating"
+                        android:paddingLeft="4dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="19dp"/>
+
+                    <TextView
+                        android:id="@+id/funcionRatingText"
+                        android:textSize="16sp"
+                        android:paddingLeft="12dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <View
+                        android:id="@+id/divider1"
+                        android:layout_width="1dp"
+                        android:layout_height="fill_parent"
+                        android:background="@color/card_inner_divider"
+                        android:layout_margin="7dp"/>
+
+                    <com.siercuit.cartelera.views.FontIconView
+                        android:id="@+id/funcionLenguaje"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="27dp"/>
+
+                    <View
+                        android:id="@+id/divider2"
+                        android:layout_width="1dp"
+                        android:layout_height="fill_parent"
+                        android:background="@color/card_inner_divider"
+                        android:layout_margin="6dp"/>
+
+                    <com.siercuit.cartelera.views.FontIconView
+                        android:id="@+id/funcion3D"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="30dp"
+                        android:text="@string/fi_3d"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/cinePeliculaItem"
+                    android:id="@+id/row2">
+
+                    <com.siercuit.cartelera.views.FontIconView
+                        android:layout_marginTop="3dp"
+                        android:id="@+id/iconEstreno"
+                        android:text="@string/fi_calendar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"
+                        android:textSize="19dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:text="@string/cine_pelicula_estreno"
+                        android:id="@+id/funcionEstreno"
+                        android:singleLine="true"
+                        android:ellipsize="marquee"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:freezesText="true"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/cinePeliculaItem"
+                    android:id="@+id/row3">
+
+                    <com.siercuit.cartelera.views.FontIconView
+                        android:layout_marginTop="3dp"
+                        android:id="@+id/iconDuracion"
+                        android:text="@string/fi_clock"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"
+                        android:textSize="19dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:text="@string/cine_pelicula_duracion"
+                        android:id="@+id/funcionDuracion" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/cinePeliculaItem"
+                    android:id="@+id/row4">
+
+                    <com.siercuit.cartelera.views.FontIconView
+                        android:layout_marginTop="3dp"
+                        android:id="@+id/iconGenero"
+                        android:text="@string/fi_tag"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"
+                        android:textSize="19dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:text="@string/cine_pelicula_genero"
+                        android:id="@+id/funcionGenero" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/cinePeliculaItem"
+                    android:id="@+id/row5">
+
+                    <com.siercuit.cartelera.views.FontIconView
+                        android:layout_marginTop="3dp"
+                        android:id="@+id/iconClasificacion"
+                        android:text="@string/fi_baby"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"
+                        android:textSize="19dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:text="@string/cine_pelicula_sin_clasificar"
+                        android:id="@+id/funcionClasificacion" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/card_padding_top"
+            android:padding="6dp"
+            android:background="@android:color/transparent">
+
+
+            <com.siercuit.cartelera.views.ExpandablePanel
+                app:animationDuration="0"
+                android:id="@+id/funcionDescripcionContainer"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                app:handle="@+id/handle"
+                app:content="@+id/funcionDescripcion">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@id/handle">
+
+                        <TextView
+                            android:id="@+id/funcionDescripcionTitulo"
+                            android:textSize="18sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:minHeight="38dp"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="#000000"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="10dp"
+                            android:paddingBottom="4dp"
+                            android:text="@string/cine_funcion_descripcion"/>
+
+                        <com.siercuit.cartelera.views.IndicatorView
+                            android:id="@+id/funcionDescripcionIndicator"
+                            android:textSize="20dp"
+                            android:textColor="@color/card_icon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="12dp" />
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:paddingTop="5dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="8dp"
+                        android:paddingBottom="8dp"
+                        android:id="@id/funcionDescripcion"
+                        android:textSize="16sp"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:background="@color/card_contrast"/>
+
+                </LinearLayout>
+
+            </com.siercuit.cartelera.views.ExpandablePanel>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/header2"
+        style="@style/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/headerText2"
+            style="@style/header_text"
+            android:text="@string/funcion_horarios"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

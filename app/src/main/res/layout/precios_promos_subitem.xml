@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent">
+
+    <TextView
+        android:id="@+id/promosPromoNombre"
+        android:textSize="16dp"
+        android:paddingTop="6dp"
+        android:paddingBottom="7dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="20dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <com.siercuit.cartelera.views.FontIconView
+        android:textColor="@color/card_icon"
+        android:paddingRight="8dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fi_arrow_right_round"/>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_below="@id/promosPromoNombre"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@color/card_inner_divider"/>
+
+</RelativeLayout>

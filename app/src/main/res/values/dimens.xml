@@ -1,0 +1,11 @@
+<resources>
+
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="card_padding_right">6dp</dimen>
+    <dimen name="card_padding_left">8dp</dimen>
+    <dimen name="card_padding_top">10dp</dimen>
+    <dimen name="card_padding_bottom">6dp</dimen>
+
+</resources>

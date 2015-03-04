@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="infantiles_cartelera_error">No se pudo cargar la cartelera.</string>
+    <string name="infantiles_estrenos_error">No se pudo cargar la cartelera</string>
+
+</resources>

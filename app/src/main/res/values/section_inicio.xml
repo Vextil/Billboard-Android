@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="inicio_error">No se pudo cargar el inicio </string>
+</resources>

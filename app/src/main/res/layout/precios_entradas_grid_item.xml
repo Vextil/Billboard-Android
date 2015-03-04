@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:orientation="vertical"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:paddingTop="@dimen/card_padding_top"
+
+android:background="@android:color/transparent">
+
+<TextView
+    android:id="@+id/nombre"
+    style="@style/header_text_huge"
+    android:textSize="21sp"
+    android:paddingLeft="12dp"/>
+
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="4dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/opcionesList"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>
+
+</LinearLayout>

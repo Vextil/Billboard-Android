@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="108dp"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/card_padding_top"
+    android:paddingBottom="@dimen/card_padding_bottom"
+    android:paddingLeft="@dimen/card_padding_left">
+
+    <RelativeLayout
+        android:id="@+id/funcionClickableView"
+        android:clickable="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="108dp"
+            android:layout_height="153dp"
+            android:id="@+id/funcionPoster"/>
+
+        <RelativeLayout
+            android:id="@+id/footerContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/funcionPoster">
+
+            <TextView
+                android:id="@+id/funcionNombre"
+                android:layout_width="match_parent"
+                android:ellipsize="end"
+                android:layout_height="38dp"
+                android:maxWidth = "108dp"
+                android:maxHeight="38dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:lines="2"
+                android:maxLines="2"
+                android:textSize="14dp" />
+
+            <View
+                android:id="@+id/divider1"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/funcionNombre"
+                android:background="@color/card_inner_divider"
+                android:layout_marginTop="2dp"/>
+
+            <LinearLayout
+                android:id="@+id/len3Dcontainer"
+                android:layout_below="@id/divider1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="6dp">
+
+                <com.siercuit.cartelera.views.FontIconView
+                    android:textSize="24dp"
+                    android:id="@+id/funcionLenguaje"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <View
+                    android:id="@+id/divider2"
+                    android:layout_width="1dp"
+                    android:layout_height="fill_parent"
+                    android:background="@color/card_inner_divider"
+                    android:layout_margin="5dp"/>
+
+                <com.siercuit.cartelera.views.FontIconView
+                    android:textSize="24dp"
+                    android:id="@+id/funcion3D"
+                    android:text="@string/fi_3d"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

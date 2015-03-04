@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/card_padding_top"
+    android:paddingLeft="@dimen/card_padding_left"
+    android:paddingRight="@dimen/card_padding_right"
+    android:background="@android:color/transparent">
+
+        <ImageView
+            android:layout_width="47.6dp"
+            android:layout_height="68dp"
+            android:id="@+id/funcionPoster"
+            android:transitionName="funcionPoster"/>
+
+        <TextView
+            android:id="@+id/funcionNombre"
+            android:layout_toRightOf="@id/funcionPoster"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:paddingLeft="10dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="3dp"
+            android:textSize="18dp"
+            android:layout_alignParentTop="true" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:id="@+id/footer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/funcionPoster"
+            android:layout_below="@id/funcionNombre"
+            android:paddingLeft="10dp">
+
+            <com.siercuit.cartelera.views.SmileyRatingView
+                android:id="@+id/funcionRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="23dp"/>
+
+            <TextView
+                android:id="@+id/funcionRatingText"
+                android:paddingLeft="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <View
+                android:id="@+id/divider1"
+                android:layout_width="1dp"
+                android:layout_height="fill_parent"
+                android:background="@color/card_inner_divider"
+                android:layout_margin="8dp"/>
+
+            <com.siercuit.cartelera.views.FontIconView
+                android:id="@+id/funcionLenguaje"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"/>
+
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="1dp"
+                android:layout_height="fill_parent"
+                android:background="@color/card_inner_divider"
+                android:layout_margin="8dp"/>
+
+            <com.siercuit.cartelera.views.FontIconView
+                android:id="@+id/funcion3D"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="35dp"
+                android:text="@string/fi_3d"/>
+
+            <TextView
+                android:id="@+id/funcionEstreno"
+                android:paddingRight="8dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:textSize="16dp" />
+
+
+
+        </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@color/card_inner_divider"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="2dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="8dp"
+        android:layout_toRightOf="@id/funcionPoster"
+        android:layout_below="@id/footer"/>
+
+</RelativeLayout>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="precios_entradas_error">No se pudieron cargar los precios</string>
+    <string name="precios_promos_error">No se pudieron cargar los precios</string>
+    <string name="precios_snacks_error">No se pudieron cargar los precios</string>
+</resources>

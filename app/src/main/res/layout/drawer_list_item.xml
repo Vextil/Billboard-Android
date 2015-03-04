@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:cacheColorHint="@android:color/transparent"
+    android:layout_height="48dp">
+
+    <com.siercuit.cartelera.views.FontIconView
+        android:id="@+id/icon"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="16dp"
+        android:textSize="23dp"/>
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@id/icon"
+        android:minHeight="48dp"
+        android:textColor="@color/drawer_text"
+        android:gravity="center_vertical"
+        android:paddingLeft="31dp"
+        android:textSize="16dp"/>
+
+    <com.siercuit.cartelera.views.IndicatorView
+        android:id="@+id/indicator"
+        android:textSize="16dp"
+        android:textColor="#eeeeee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="18dp" />
+
+
+</RelativeLayout>

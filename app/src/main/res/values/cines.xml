@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="cines_names">
+        <item>Montevideo</item>
+        <item>Portones</item>
+        <item>Punta Carretas</item>
+        <item>Nuevocentro</item>
+    </array>
+
+    <array name="cines_slugs">
+        <item>montevideo</item>
+        <item>portones</item>
+        <item>puntacarretas</item>
+        <item>nuevocentro</item>
+    </array>
+
+</resources>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="cine_pelicula_estreno">Estreno</string>
+    <string name="cine_pelicula_duracion">Duracion</string>
+    <string name="cine_pelicula_genero">Genero</string>
+    <string name="cine_pelicula_clasificacion">Clasificacion</string>
+    <string name="cine_pelicula_lenguaje">Lenguaje</string>
+    <string name="cine_pelicula_sin_clasificar">Sin Clasificar</string>
+    <string name="cine_dl_cartelera_error">No se pudo descargar la cartelera</string>
+    <string name="cine_dl_pelicula_error">No se pudo descargar la pelicula</string>
+    <string name="cine_lenguaje_esp">Español</string>
+    <string name="cine_lenguaje_sub">Subtitulado</string>
+    <string name="cine_funcion_descripcion">Descripcion</string>
+
+    <string name="cine_cartelera_error">No se pudo cargar la cartelera</string>
+    <string name="cine_estrenos_error">No se pudo cargar la cartelera</string>
+    <string name="cine_funcion_error">No se pudo cargar la funcion</string>
+
+    <style name="cinePeliculaItem">
+        <item name="android:layout_height">25dp</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_marginBottom">7dp</item>
+    </style>
+
+
+</resources>
