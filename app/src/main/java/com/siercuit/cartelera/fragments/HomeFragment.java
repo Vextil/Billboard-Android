@@ -29,8 +29,8 @@ import retrofit.RetrofitError;
 
 public class HomeFragment extends ProgressFragment
 {
-    protected View mensajeView;
-    protected Map<RelativeLayout, Map<ImageView, RelativeLayout>> categorias;
+    protected View messageView;
+    protected Map<RelativeLayout, Map<ImageView, RelativeLayout>> categories;
     protected Map<ImageView, RelativeLayout> items;
 
     public HomeFragment() { }
@@ -78,53 +78,53 @@ public class HomeFragment extends ProgressFragment
     @Override
     public void viewBuilder()
     {
-        categorias = new LinkedHashMap<RelativeLayout, Map<ImageView, RelativeLayout>>();
+        categories = new LinkedHashMap<RelativeLayout, Map<ImageView, RelativeLayout>>();
 
         LayoutInflater inflater = LayoutInflater.from(getActivity());
-        LinearLayout cartelerasContainer = (LinearLayout) getContentView().findViewById(R.id.homeCartelerasContainer);
+        LinearLayout categoriesContainer = (LinearLayout) getContentView().findViewById(R.id.homeCartelerasContainer);
         HomePOJO data = (HomePOJO) getData();
 
         if (data.message != null) {
-            mensajeView = inflater.inflate(R.layout.mensaje_header_view, null, false);
-            TextView mensaje = (TextView) mensajeView.findViewById(R.id.mensaje);
+            messageView = inflater.inflate(R.layout.mensaje_header_view, categoriesContainer, false);
+            TextView mensaje = (TextView) messageView.findViewById(R.id.mensaje);
             mensaje.setText(data.message);
-            cartelerasContainer.addView(mensajeView);
-            mensajeView.setVisibility(View.INVISIBLE);
+            categoriesContainer.addView(messageView);
+            messageView.setVisibility(View.INVISIBLE);
         }
 
-        HomePOJO.Categories[] carteleras = data.categories;
-        for (HomePOJO.Categories cartelera : carteleras) {
+        HomePOJO.Categories[] categories = data.categories;
+        for (HomePOJO.Categories category : categories) {
 
-            HomePOJO.Categories.Items[] items = cartelera.items;
-            View carteleraView = inflater.inflate(R.layout.inicio_cartelera, null);
-            TextView carteleraNombre = (TextView) carteleraView.findViewById(R.id.homeCarteleraNombre);
-            final RelativeLayout header = (RelativeLayout) carteleraView.findViewById(R.id.header);
+            HomePOJO.Categories.Items[] items = category.items;
+            View categoryView = inflater.inflate(R.layout.inicio_cartelera, categoriesContainer, false);
+            TextView categoryName = (TextView) categoryView.findViewById(R.id.homeCarteleraNombre);
+            final RelativeLayout header = (RelativeLayout) categoryView.findViewById(R.id.header);
 
             header.setVisibility(View.INVISIBLE);
 
-            carteleraNombre.setTypeface(App.getRobotoTypeface());
-            LinearLayout carteleraFuncionesContainer = (LinearLayout)
-                    carteleraView.findViewById(R.id.homeCarteleraFuncionesContainer);
-            carteleraNombre.setText(cartelera.name);
+            categoryName.setTypeface(App.getRobotoTypeface());
+            LinearLayout categoryItemsContainer = (LinearLayout)
+                    categoryView.findViewById(R.id.homeCarteleraFuncionesContainer);
+            categoryName.setText(category.name);
 
             this.items = new LinkedHashMap<ImageView, RelativeLayout>();
 
             for (final HomePOJO.Categories.Items item : items) {
-                View funcionView = inflater.inflate(R.layout.inicio_cartelera_funcion, null);
-                RelativeLayout funcionClickableView = (RelativeLayout) funcionView.findViewById(R.id.funcionClickableView);
-                final ImageView funcionPoster = (ImageView) funcionView.findViewById(R.id.funcionPoster);
-                TextView funcionNombre = (TextView) funcionView.findViewById(R.id.funcionNombre);
-                FontIconView funcionLenguaje = (FontIconView) funcionView.findViewById(R.id.funcionLenguaje);
-                View divider2 = funcionView.findViewById(R.id.divider2);
-                FontIconView funcion3D = (FontIconView) funcionView.findViewById(R.id.funcion3D);
-                final RelativeLayout footerContainer = (RelativeLayout) funcionView.findViewById(R.id.footerContainer);
+                View itemView = inflater.inflate(R.layout.inicio_cartelera_funcion, categoryItemsContainer, false);
+                RelativeLayout itemClickableView = (RelativeLayout) itemView.findViewById(R.id.funcionClickableView);
+                final ImageView itemPoster = (ImageView) itemView.findViewById(R.id.funcionPoster);
+                TextView itemName = (TextView) itemView.findViewById(R.id.funcionNombre);
+                FontIconView itemLanguage = (FontIconView) itemView.findViewById(R.id.funcionLenguaje);
+                View divider2 = itemView.findViewById(R.id.divider2);
+                FontIconView item3D = (FontIconView) itemView.findViewById(R.id.funcion3D);
+                final RelativeLayout footerContainer = (RelativeLayout) itemView.findViewById(R.id.footerContainer);
 
-                funcionPoster.setVisibility(View.INVISIBLE);
+                itemPoster.setVisibility(View.INVISIBLE);
                 footerContainer.setVisibility(View.INVISIBLE);
 
-                this.items.put(funcionPoster, footerContainer);
+                this.items.put(itemPoster, footerContainer);
 
-                funcionClickableView.setOnTouchListener(new View.OnTouchListener() {
+                itemClickableView.setOnTouchListener(new View.OnTouchListener() {
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
                         if (event.getAction() == MotionEvent.ACTION_UP) {
@@ -149,52 +149,52 @@ public class HomeFragment extends ProgressFragment
                     }
                 });
 
-                funcionNombre.setTypeface(App.getRobotoTypeface());
-                funcionNombre.setText(item.name);
+                itemName.setTypeface(App.getRobotoTypeface());
+                itemName.setText(item.name);
                 Picasso.with(getActivity()).load(data.poster.url + item.poster)
                         .placeholder(R.drawable.poster_holder_big)
-                        .into(funcionPoster);
+                        .into(itemPoster);
 
                 if (item.language == null) {
-                    funcionView.findViewById(R.id.len3Dcontainer).setVisibility(View.GONE);
+                    itemView.findViewById(R.id.len3Dcontainer).setVisibility(View.GONE);
                 } else {
-                    funcionLenguaje.setTextColor(App.getColor());
+                    itemLanguage.setTextColor(App.getColor());
                     if (item.language.equals("esp")) {
-                        funcionLenguaje.setText(R.string.fi_esp);
+                        itemLanguage.setText(R.string.fi_esp);
                     } else {
-                        funcionLenguaje.setText(R.string.fi_sub);
+                        itemLanguage.setText(R.string.fi_sub);
                     }
                     if (item.threeD) {
-                        funcion3D.setTextColor(App.getColor());
+                        item3D.setTextColor(App.getColor());
                     } else {
-                        funcion3D.setVisibility(View.GONE);
+                        item3D.setVisibility(View.GONE);
                         divider2.setVisibility(View.GONE);
                     }
                 }
 
-                carteleraFuncionesContainer.addView(funcionView);
+                categoryItemsContainer.addView(itemView);
 
             }
 
-            categorias.put(header, this.items);
-            cartelerasContainer.addView(carteleraView);
+            this.categories.put(header, this.items);
+            categoriesContainer.addView(categoryView);
         }
     }
 
     @Override
     public void inAnimator()
     {
-        if (mensajeView != null) {
-            mensajeView.setVisibility(View.VISIBLE);
+        if (messageView != null) {
+            messageView.setVisibility(View.VISIBLE);
             YoYo.with(Techniques.SlideInDown)
                     .duration(400)
-                    .playOn(mensajeView);
+                    .playOn(messageView);
         }
-        for (final Map.Entry<RelativeLayout, Map<ImageView, RelativeLayout>> categoria : categorias.entrySet()) {
+        for (final Map.Entry<RelativeLayout, Map<ImageView, RelativeLayout>> category : categories.entrySet()) {
             Integer i = 0;
-            categoria.getKey().setVisibility(View.VISIBLE);
-            YoYo.with(Techniques.SlideInLeft).duration(500).playOn(categoria.getKey());
-            for (final Map.Entry<ImageView, RelativeLayout> entry : categoria.getValue().entrySet()) {
+            category.getKey().setVisibility(View.VISIBLE);
+            YoYo.with(Techniques.SlideInLeft).duration(500).playOn(category.getKey());
+            for (final Map.Entry<ImageView, RelativeLayout> entry : category.getValue().entrySet()) {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -214,12 +214,12 @@ public class HomeFragment extends ProgressFragment
     public void outAnimator(final animationInterface callback)
     {
         int maxI = 0;
-        if (mensajeView != null) {
+        if (messageView != null) {
             YoYo.with(Techniques.SlideOutUp)
                     .duration(500)
-                    .playOn(mensajeView);
+                    .playOn(messageView);
         }
-        for (final Map.Entry<RelativeLayout, Map<ImageView, RelativeLayout>> categoria : categorias.entrySet()) {
+        for (final Map.Entry<RelativeLayout, Map<ImageView, RelativeLayout>> categoria : categories.entrySet()) {
             Integer i = 0;
             YoYo.with(Techniques.SlideOutRight).duration(500).playOn(categoria.getKey());
             for (final Map.Entry<ImageView, RelativeLayout> entry : categoria.getValue().entrySet()) {

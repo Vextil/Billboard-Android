@@ -11,7 +11,6 @@ public class HomePOJO
     public static class Categories
     {
         public String name;
-        public String icon;
         public Items[] items;
 
         public static class Items

@@ -305,7 +305,7 @@ public class App extends Application
 
     public static String Link()
     {
-        return "https://api.vextil.io/billboard/";
+        return "http://api.vextil.io/billboard/";
     }
 
     public static String[] getCinemaNames()

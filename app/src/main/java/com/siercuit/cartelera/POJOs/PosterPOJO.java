@@ -3,7 +3,7 @@ package com.siercuit.cartelera.POJOs;
 public class PosterPOJO
 {
     public String url;
-    public Sizes[] sizes;
+    public Sizes sizes;
 
     public static class Sizes
     {
