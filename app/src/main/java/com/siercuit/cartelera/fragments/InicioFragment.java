@@ -53,7 +53,6 @@ public class InicioFragment extends ProgressFragment
     public void onActivityCreated(Bundle savedInstanceState)
     {
         super.onActivityCreated(savedInstanceState);
-        setEmptyText(R.string.inicio_error);
         setContentView(R.layout.inicio_fragment);
     }
 
