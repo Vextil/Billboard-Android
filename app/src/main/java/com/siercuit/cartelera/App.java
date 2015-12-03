@@ -330,7 +330,7 @@ public class App extends Application
         List<String> childFragments;
 
         // INICIO group
-        navItems.add(new DrawerNavItemMapper("Inicio", R.string.fi_house, R.color.cartelera_blue, "fragments.InicioFragment"));
+        navItems.add(new DrawerNavItemMapper("Inicio", R.string.fi_house, R.color.cartelera_blue, "fragments.HomeFragment"));
 
         // CINE group
         child = new ArrayList<String>();

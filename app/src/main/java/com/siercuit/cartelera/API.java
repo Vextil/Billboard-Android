@@ -2,7 +2,7 @@ package com.siercuit.cartelera;
 
 import com.siercuit.cartelera.POJOs.FuncionPOJO;
 import com.siercuit.cartelera.POJOs.FuncionesPOJO;
-import com.siercuit.cartelera.POJOs.InicioPOJO;
+import com.siercuit.cartelera.POJOs.HomePOJO;
 import com.siercuit.cartelera.POJOs.PreciosEntradasPOJO;
 import com.siercuit.cartelera.POJOs.PreciosPromosPOJO;
 import com.siercuit.cartelera.POJOs.PreciosSnacksPOJO;
@@ -13,8 +13,8 @@ import retrofit.http.Path;
 
 public interface API
 {
-    @GET("/inicio")
-    public void getInicio(Callback<InicioPOJO> callback);
+    @GET("/")
+    public void getHome(Callback<HomePOJO> callback);
 
     @GET("/cine/cartelera/{slug}")
     public void getCineCartelera(@Path("slug") String slug, Callback<FuncionesPOJO> callback);
