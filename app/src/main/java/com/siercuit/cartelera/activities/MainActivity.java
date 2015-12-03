@@ -1,7 +1,5 @@
 package com.siercuit.cartelera.activities;
 
-import com.crashlytics.android.Crashlytics;
-
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
@@ -26,7 +24,6 @@ public class MainActivity extends ActionBarActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        Crashlytics.start(this);
         ((App) getApplication()).getTracker(App.TrackerName.APP_TRACKER);
         setContentView(R.layout.activity_main);
 
@@ -92,7 +89,7 @@ public class MainActivity extends ActionBarActivity
     @Override
     public void onBackPressed()
     {
-        if(drawerLayout.isDrawerOpen(Gravity.START|Gravity.LEFT)){
+        if(drawerLayout.isDrawerOpen(Gravity.LEFT)){
             drawerLayout.closeDrawers();
         } else if (getSupportFragmentManager().getBackStackEntryCount() == 1){
             finish();
