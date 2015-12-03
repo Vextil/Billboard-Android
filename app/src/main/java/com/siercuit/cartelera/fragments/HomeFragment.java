@@ -60,11 +60,12 @@ public class HomeFragment extends ProgressFragment
     public void dataFetcher()
     {
         if (!isPaused()) {
-            App.API().getInicio(new Callback<HomePOJO>() {
+            App.API().getHome(new Callback<HomePOJO>() {
                 @Override
                 public void success(final HomePOJO responsePOJO, retrofit.client.Response response) {
                     setData(responsePOJO, HomePOJO.class);
                 }
+
                 @Override
                 public void failure(RetrofitError retrofitError) {
                     setContentEmpty(true);
