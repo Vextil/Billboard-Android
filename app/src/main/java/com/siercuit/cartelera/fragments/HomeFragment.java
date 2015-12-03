@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.siercuit.cartelera.App;
-import com.siercuit.cartelera.POJOs.InicioPOJO;
+import com.siercuit.cartelera.POJOs.HomePOJO;
 import com.siercuit.cartelera.R;
 import com.siercuit.cartelera.interfaces.animationInterface;
 import com.siercuit.cartelera.utilities.ProgressFragment;
@@ -27,17 +27,17 @@ import java.util.Map;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 
-public class InicioFragment extends ProgressFragment
+public class HomeFragment extends ProgressFragment
 {
     protected View mensajeView;
     protected Map<RelativeLayout, Map<ImageView, RelativeLayout>> categorias;
     protected Map<ImageView, RelativeLayout> items;
 
-    public InicioFragment() { }
+    public HomeFragment() { }
 
     public static Fragment newInstance(Integer color, String title)
     {
-        Fragment fragment = new InicioFragment();
+        Fragment fragment = new HomeFragment();
         setFragmentArguments(color, title, fragment);
         return fragment;
     }
@@ -60,10 +60,10 @@ public class InicioFragment extends ProgressFragment
     public void dataFetcher()
     {
         if (!isPaused()) {
-            App.API().getInicio(new Callback<InicioPOJO>() {
+            App.API().getInicio(new Callback<HomePOJO>() {
                 @Override
-                public void success(final InicioPOJO responsePOJO, retrofit.client.Response response) {
-                    setData(responsePOJO, InicioPOJO.class);
+                public void success(final HomePOJO responsePOJO, retrofit.client.Response response) {
+                    setData(responsePOJO, HomePOJO.class);
                 }
                 @Override
                 public void failure(RetrofitError retrofitError) {
@@ -81,20 +81,20 @@ public class InicioFragment extends ProgressFragment
 
         LayoutInflater inflater = LayoutInflater.from(getActivity());
         LinearLayout cartelerasContainer = (LinearLayout) getContentView().findViewById(R.id.homeCartelerasContainer);
-        InicioPOJO data = (InicioPOJO) getData();
+        HomePOJO data = (HomePOJO) getData();
 
-        if (data.mensaje != null) {
+        if (data.message != null) {
             mensajeView = inflater.inflate(R.layout.mensaje_header_view, null, false);
             TextView mensaje = (TextView) mensajeView.findViewById(R.id.mensaje);
-            mensaje.setText(data.mensaje);
+            mensaje.setText(data.message);
             cartelerasContainer.addView(mensajeView);
             mensajeView.setVisibility(View.INVISIBLE);
         }
 
-        InicioPOJO.Carteleras[] carteleras = data.carteleras;
-        for (InicioPOJO.Carteleras cartelera : carteleras) {
+        HomePOJO.Categories[] carteleras = data.categories;
+        for (HomePOJO.Categories cartelera : carteleras) {
 
-            InicioPOJO.Carteleras.Funciones[] funciones = cartelera.funciones;
+            HomePOJO.Categories.Items[] items = cartelera.items;
             View carteleraView = inflater.inflate(R.layout.inicio_cartelera, null);
             TextView carteleraNombre = (TextView) carteleraView.findViewById(R.id.homeCarteleraNombre);
             final RelativeLayout header = (RelativeLayout) carteleraView.findViewById(R.id.header);
@@ -104,11 +104,11 @@ public class InicioFragment extends ProgressFragment
             carteleraNombre.setTypeface(App.getRobotoTypeface());
             LinearLayout carteleraFuncionesContainer = (LinearLayout)
                     carteleraView.findViewById(R.id.homeCarteleraFuncionesContainer);
-            carteleraNombre.setText(cartelera.nombre);
+            carteleraNombre.setText(cartelera.name);
 
-            items = new LinkedHashMap<ImageView, RelativeLayout>();
+            this.items = new LinkedHashMap<ImageView, RelativeLayout>();
 
-            for (final InicioPOJO.Carteleras.Funciones funcion : funciones) {
+            for (final HomePOJO.Categories.Items item : items) {
                 View funcionView = inflater.inflate(R.layout.inicio_cartelera_funcion, null);
                 RelativeLayout funcionClickableView = (RelativeLayout) funcionView.findViewById(R.id.funcionClickableView);
                 final ImageView funcionPoster = (ImageView) funcionView.findViewById(R.id.funcionPoster);
@@ -121,7 +121,7 @@ public class InicioFragment extends ProgressFragment
                 funcionPoster.setVisibility(View.INVISIBLE);
                 footerContainer.setVisibility(View.INVISIBLE);
 
-                items.put(funcionPoster, footerContainer);
+                this.items.put(funcionPoster, footerContainer);
 
                 funcionClickableView.setOnTouchListener(new View.OnTouchListener() {
                     @Override
@@ -135,10 +135,10 @@ public class InicioFragment extends ProgressFragment
                                             .replace(
                                                     R.id.frame_container,
                                                     FuncionFragment.newInstance(
-                                                            funcion.nombre,
-                                                            String.valueOf(funcion.id)
+                                                            item.name,
+                                                            String.valueOf(item.id)
                                                     )
-                                            ).addToBackStack(funcion.nombre).commit();
+                                            ).addToBackStack(item.name).commit();
                                 }
                             };
                             outAnimator(callback);
@@ -149,22 +149,21 @@ public class InicioFragment extends ProgressFragment
                 });
 
                 funcionNombre.setTypeface(App.getRobotoTypeface());
-                funcionNombre.setText(funcion.nombre);
-                Picasso.with(getActivity()).load(data.poster_url_grande + funcion.poster
-                        + data.poster_extension)
+                funcionNombre.setText(item.name);
+                Picasso.with(getActivity()).load(data.poster.url + item.poster)
                         .placeholder(R.drawable.poster_holder_big)
                         .into(funcionPoster);
 
-                if (funcion.lenguaje == null) {
+                if (item.language == null) {
                     funcionView.findViewById(R.id.len3Dcontainer).setVisibility(View.GONE);
                 } else {
                     funcionLenguaje.setTextColor(App.getColor());
-                    if (funcion.lenguaje.equals("esp")) {
+                    if (item.language.equals("esp")) {
                         funcionLenguaje.setText(R.string.fi_esp);
                     } else {
                         funcionLenguaje.setText(R.string.fi_sub);
                     }
-                    if (funcion.threeD) {
+                    if (item.threeD) {
                         funcion3D.setTextColor(App.getColor());
                     } else {
                         funcion3D.setVisibility(View.GONE);
@@ -176,7 +175,7 @@ public class InicioFragment extends ProgressFragment
 
             }
 
-            categorias.put(header, items);
+            categorias.put(header, this.items);
             cartelerasContainer.addView(carteleraView);
         }
     }
