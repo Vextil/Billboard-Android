@@ -2,11 +2,11 @@ package com.siercuit.cartelera;
 
 import com.siercuit.cartelera.POJOs.FuncionPOJO;
 import com.siercuit.cartelera.POJOs.FuncionesPOJO;
-import com.siercuit.cartelera.POJOs.HomePOJO;
 import com.siercuit.cartelera.POJOs.PreciosEntradasPOJO;
 import com.siercuit.cartelera.POJOs.PreciosPromosPOJO;
 import com.siercuit.cartelera.POJOs.PreciosSnacksPOJO;
 
+import io.vextil.billboard.POJOs.HomePOJO;
 import retrofit.Callback;
 import retrofit.http.GET;
 import retrofit.http.Path;
