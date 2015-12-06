@@ -1,5 +1,6 @@
 package com.siercuit.cartelera.adapters;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
@@ -9,6 +10,7 @@ import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -176,7 +178,11 @@ public class DrawerAdapter extends BaseExpandableListAdapter
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        setChildFragment(position, childPosition);
+                        try {
+                            setChildFragment(position, childPosition);
+                        } catch (NoSuchMethodException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }, 200);
                 return false;
@@ -189,11 +195,10 @@ public class DrawerAdapter extends BaseExpandableListAdapter
     {
         if (!navItems.get(position).hasChild()) {
             try {
-                Class<?> fragmentClass = Class.forName(context.getPackageName() + '.' + navItems.get(position).getFragment());
-                Method method = fragmentClass.getDeclaredMethod("newInstance", Integer.class, String.class );
-                Fragment fragment = (Fragment) method.invoke(
-                        fragmentClass,
-                        context.getResources().getColor(navItems.get(position).getColor()),
+                Class<?> fragmentClass = Class.forName(navItems.get(position).getFragment());
+                Constructor<?> cons = fragmentClass.getConstructor(int.class, String.class);
+                Fragment fragment = (Fragment) cons.newInstance(
+                        ContextCompat.getColor(context, navItems.get(position).getColor()),
                         navItems.get(position).getTitle()
                 );
                 fragmentManager.beginTransaction()
@@ -202,26 +207,26 @@ public class DrawerAdapter extends BaseExpandableListAdapter
                         .commit();
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
             } catch (NoSuchMethodException e) {
                 e.printStackTrace();
             } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InstantiationException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    public void setChildFragment(int position, int childPosition)
-    {
+    public void setChildFragment(int position, int childPosition) throws NoSuchMethodException {
         try {
-            Class<?> fragmentClass = Class.forName(context.getPackageName() + '.' + navItems.get(position)
+            Class<?> fragmentClass = Class.forName( navItems.get(position)
                     .getChildFragment(childPosition));
-            Method method = fragmentClass.getDeclaredMethod("newInstance", Integer.class, String.class );
-            Fragment fragment = (Fragment) method.invoke(
-                    fragmentClass,
-                    context.getResources().getColor(navItems.get(position).getColor()),
-                    navItems.get(position).getChildTitle(childPosition)
+            Constructor<?> cons = fragmentClass.getConstructor(int.class, String.class);
+            Fragment fragment = (Fragment) cons.newInstance(
+                ContextCompat.getColor(context, navItems.get(position).getColor()),
+                navItems.get(position).getChildTitle(childPosition)
             );
             fragmentManager.beginTransaction()
                     .replace(R.id.frame_container, fragment)
@@ -229,11 +234,13 @@ public class DrawerAdapter extends BaseExpandableListAdapter
                     .commit();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
             e.printStackTrace();
         }
     }
