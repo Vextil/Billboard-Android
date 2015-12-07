@@ -1,12 +1,12 @@
 package com.siercuit.cartelera;
 
-import com.siercuit.cartelera.POJOs.FuncionPOJO;
-import com.siercuit.cartelera.POJOs.FuncionesPOJO;
-import com.siercuit.cartelera.POJOs.PreciosEntradasPOJO;
-import com.siercuit.cartelera.POJOs.PreciosPromosPOJO;
-import com.siercuit.cartelera.POJOs.PreciosSnacksPOJO;
+import io.vextil.billboard.services.FuncionService;
+import io.vextil.billboard.services.FuncionesService;
+import io.vextil.billboard.services.PreciosEntradasService;
+import io.vextil.billboard.services.PreciosPromosService;
+import io.vextil.billboard.services.PreciosSnacksService;
 
-import io.vextil.billboard.POJOs.HomePOJO;
+import io.vextil.billboard.services.HomeService;
 import retrofit.Callback;
 import retrofit.http.GET;
 import retrofit.http.Path;
@@ -14,30 +14,30 @@ import retrofit.http.Path;
 public interface API
 {
     @GET("/")
-    public void getHome(Callback<HomePOJO> callback);
+    public void getHome(Callback<HomeService> callback);
 
     @GET("/cine/cartelera/{slug}")
-    public void getCineCartelera(@Path("slug") String slug, Callback<FuncionesPOJO> callback);
+    public void getCineCartelera(@Path("slug") String slug, Callback<FuncionesService> callback);
     @GET("/cine/estrenos")
-    public void getCineEstrenos(Callback<FuncionesPOJO> callback);
+    public void getCineEstrenos(Callback<FuncionesService> callback);
 
     @GET("/teatro/cartelera")
-    public void getTeatroCartelera(Callback<FuncionesPOJO> callback);
+    public void getTeatroCartelera(Callback<FuncionesService> callback);
     @GET("/teatro/estrenos")
-    public void getTeatroEstrenos(Callback<FuncionesPOJO> callback);
+    public void getTeatroEstrenos(Callback<FuncionesService> callback);
 
     @GET("/infantiles/cartelera")
-    public void getInfantilesCartelera(Callback<FuncionesPOJO> callback);
+    public void getInfantilesCartelera(Callback<FuncionesService> callback);
     @GET("/infantiles/estrenos")
-    public void getInfantilesEstrenos(Callback<FuncionesPOJO> callback);
+    public void getInfantilesEstrenos(Callback<FuncionesService> callback);
 
     @GET("/funcion/{id}")
-    public void getFuncion(@Path("id") String id, Callback<FuncionPOJO> callback);
+    public void getFuncion(@Path("id") String id, Callback<FuncionService> callback);
 
     @GET("/precios/entradas")
-    public void getPreciosEntradas(Callback<PreciosEntradasPOJO> callback);
+    public void getPreciosEntradas(Callback<PreciosEntradasService> callback);
     @GET("/precios/snacks")
-    public void getPreciosSnacks(Callback<PreciosSnacksPOJO> callback);
+    public void getPreciosSnacks(Callback<PreciosSnacksService> callback);
     @GET("/precios/promos")
-    public void getPreciosPromos(Callback<PreciosPromosPOJO> callback);
+    public void getPreciosPromos(Callback<PreciosPromosService> callback);
 }

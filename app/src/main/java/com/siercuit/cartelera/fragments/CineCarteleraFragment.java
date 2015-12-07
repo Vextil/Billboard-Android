@@ -11,7 +11,7 @@ import com.google.android.gms.ads.AdView;
 import com.nhaarman.listviewanimations.appearance.simple.SwingLeftInAnimationAdapter;
 import com.siercuit.cartelera.App;
 import com.siercuit.cartelera.interfaces.GridItemClickInterface;
-import com.siercuit.cartelera.POJOs.FuncionesPOJO;
+import io.vextil.billboard.services.FuncionesService;
 import com.siercuit.cartelera.R;
 import com.siercuit.cartelera.adapters.CineFuncionesAdapter;
 import com.siercuit.cartelera.interfaces.animationInterface;
@@ -56,10 +56,10 @@ public class CineCarteleraFragment extends ProgressFragment
     public void dataFetcher()
     {
         if (!isPaused()) {
-            App.API().getCineCartelera(getDataArrayId(), new Callback<FuncionesPOJO>() {
+            App.API().getCineCartelera(getDataArrayId(), new Callback<FuncionesService>() {
                 @Override
-                public void success(FuncionesPOJO responsePOJO, retrofit.client.Response response) {
-                    setDataOnArrayId(responsePOJO, FuncionesPOJO.class);
+                public void success(FuncionesService responsePOJO, retrofit.client.Response response) {
+                    setDataOnArrayId(responsePOJO, FuncionesService.class);
                 }
 
                 @Override
@@ -76,7 +76,7 @@ public class CineCarteleraFragment extends ProgressFragment
     {
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
-        FuncionesPOJO data = (FuncionesPOJO) getDataFromArray();
+        FuncionesService data = (FuncionesService) getDataFromArray();
 
         View footerView = inflater.inflate(R.layout.ad_footer, null, false);
 
@@ -84,10 +84,10 @@ public class CineCarteleraFragment extends ProgressFragment
         AdView adView = (AdView) footerView.findViewById(R.id.adView);
 
         listView.addFooterView(footerView);
-        if (data.mensaje != null) {
+        if (data.getMensaje() != null) {
             View headerView = inflater.inflate(R.layout.mensaje_header_view, null, false);
             TextView mensaje = (TextView) headerView.findViewById(R.id.mensaje);
-            mensaje.setText(data.mensaje);
+            mensaje.setText(data.getMensaje());
             listView.addHeaderView(headerView);
         }
         CineFuncionesAdapter adapter = new CineFuncionesAdapter(getActivity(), data);

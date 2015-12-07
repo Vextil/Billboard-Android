@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.widget.TextView
 
 import com.siercuit.cartelera.App
-import io.vextil.billboard.POJOs.HomePOJO
+import io.vextil.billboard.services.HomeService
 import com.siercuit.cartelera.R
 import com.siercuit.cartelera.interfaces.animationInterface
 import com.siercuit.cartelera.utilities.ProgressFragment
@@ -35,9 +35,9 @@ class HomeFragment() : ProgressFragment() {
 
     override fun dataFetcher() {
         if (!isPaused) {
-            App.API().getHome(object : Callback<HomePOJO> {
-                override fun success(responsePOJO: HomePOJO, response: retrofit.client.Response) {
-                    setData(responsePOJO, HomePOJO::class.java)
+            App.API().getHome(object : Callback<HomeService> {
+                override fun success(responseService: HomeService, response: retrofit.client.Response) {
+                    setData(responseService, HomeService::class.java)
                 }
 
                 override fun failure(retrofitError: RetrofitError) {
@@ -49,7 +49,7 @@ class HomeFragment() : ProgressFragment() {
     }
 
     override fun viewBuilder() {
-        for (category in (data as HomePOJO).categories) {
+        for (category in (data as HomeService).categories) {
             val categoryView = LayoutInflater.from(activity).inflate(R.layout.home_category, scrollViewContainer, false)
             val categoryName = categoryView.findViewById(R.id.header_text) as TextView
             val recyclerView = categoryView.findViewById(R.id.recycler) as RecyclerView
@@ -58,7 +58,7 @@ class HomeFragment() : ProgressFragment() {
             val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             recyclerView.minimumHeight = 700
             recyclerView.layoutManager = layoutManager
-            val adapter = HomeItemAdapter(activity, category, (data as HomePOJO).poster)
+            val adapter = HomeItemAdapter(activity, category, (data as HomeService).poster)
             recyclerView.adapter = adapter
             scrollViewContainer.addView(categoryView)
         }

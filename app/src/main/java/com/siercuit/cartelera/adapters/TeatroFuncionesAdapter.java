@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.siercuit.cartelera.App;
-import com.siercuit.cartelera.POJOs.FuncionesPOJO;
+import io.vextil.billboard.services.FuncionesService;
 import com.siercuit.cartelera.R;
 import com.siercuit.cartelera.views.SmileyRatingView;
 import com.squareup.picasso.Picasso;
@@ -19,9 +19,9 @@ import butterknife.InjectView;
 public class TeatroFuncionesAdapter extends ListAsGridAdapter
 {
     private Context context;
-    private FuncionesPOJO data;
+    private FuncionesService data;
 
-    public TeatroFuncionesAdapter(Context context, FuncionesPOJO data)
+    public TeatroFuncionesAdapter(Context context, FuncionesService data)
     {
         super(context);
         this.context = context;
@@ -48,19 +48,19 @@ public class TeatroFuncionesAdapter extends ListAsGridAdapter
             holder = (ViewHolder) view.getTag();
         }
 
-        FuncionesPOJO.Funciones funcion = data.funciones[position];
-        holder.funcionNombre.setText(funcion.nombre);
-        holder.funcionNombre.setTag(String.valueOf(funcion.id));
-        holder.funcionRating.setRating(funcion.rating);
-        holder.funcionRatingText.setText(funcion.rating + "%");
-        Picasso.with(context).load(data.poster_url + funcion.poster + data.poster_extension)
+        FuncionesService.Funciones funcion = data.getFunciones()[position];
+        holder.funcionNombre.setText(funcion.getNombre());
+        holder.funcionNombre.setTag(String.valueOf(funcion.getId()));
+        holder.funcionRating.setRating(funcion.getRating());
+        holder.funcionRatingText.setText(funcion.getRating() + "%");
+        Picasso.with(context).load(data.getPoster_url() + funcion.getPoster() + data.getPoster_extension())
                 .placeholder(R.drawable.poster_holder_small)
                 .into(holder.funcionPoster);
 
-        if (funcion.estreno == null) {
+        if (funcion.getEstreno() == null) {
             holder.funcionEstreno.setVisibility(View.INVISIBLE);
         } else {
-            holder.funcionEstreno.setText(funcion.estreno);
+            holder.funcionEstreno.setText(funcion.getEstreno());
             holder.funcionEstreno.setVisibility(View.VISIBLE);
         }
 
@@ -83,7 +83,7 @@ public class TeatroFuncionesAdapter extends ListAsGridAdapter
 
     @Override
     public int getItemCount() {
-        return data.funciones.length;
+        return data.getFunciones().length;
     }
 
     @Override

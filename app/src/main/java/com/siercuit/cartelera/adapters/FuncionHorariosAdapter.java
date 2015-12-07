@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.siercuit.cartelera.App;
-import com.siercuit.cartelera.POJOs.FuncionPOJO;
+import io.vextil.billboard.services.FuncionService;
 import com.siercuit.cartelera.R;
 import com.siercuit.cartelera.views.IndicatorView;
 
@@ -22,9 +22,9 @@ import butterknife.InjectView;
 public class FuncionHorariosAdapter extends BaseExpandableListAdapter
 {
     private Context context;
-    private FuncionPOJO.Funcion.Salas[] cines;
+    private FuncionService.Funcion.Salas[] cines;
 
-    public FuncionHorariosAdapter(Context context, FuncionPOJO.Funcion.Salas[] cines)
+    public FuncionHorariosAdapter(Context context, FuncionService.Funcion.Salas[] cines)
     {
         this.context = context;
         this.cines = cines;
@@ -59,9 +59,9 @@ public class FuncionHorariosAdapter extends BaseExpandableListAdapter
         } else {
             holder = (GroupHolder) view.getTag();
         }
-        holder.horarioCine.setText(cines[position].nombre);
+        holder.horarioCine.setText(cines[position].getNombre());
 
-        if (cines[position].horarios == null) {
+        if (cines[position].getHorarios() == null) {
             holder.indicator.setVisibility(View.INVISIBLE);
             holder.horarioCine.setTextColor(context.getResources().getColor(R.color.card_text_disabled));
         } else {
@@ -92,10 +92,10 @@ public class FuncionHorariosAdapter extends BaseExpandableListAdapter
 
     @Override
     public int getChildrenCount(int position) {
-        if (cines[position].horarios == null) {
+        if (cines[position].getHorarios() == null) {
             return 0;
         } else {
-            return cines[position].horarios.length;
+            return cines[position].getHorarios().length;
         }
     }
 
@@ -112,14 +112,14 @@ public class FuncionHorariosAdapter extends BaseExpandableListAdapter
         } else {
             holder = (ChildHolder) view.getTag();
         }
-        FuncionPOJO.Funcion.Salas.Horarios horario = cines[position].horarios[childPosition];
+        FuncionService.Funcion.Salas.Horarios horario = cines[position].getHorarios()[childPosition];
         holder.funcionHoras.removeAllViews();
-        holder.funcionDia.setText(horario.dia);
+        holder.funcionDia.setText(horario.getDia());
         holder.funcionDia.setTypeface(App.getRobotoTypeface());
         if (isLastChild) {
             holder.divider.setVisibility(View.INVISIBLE);
         }
-        int horasLength = horario.horas.length;
+        int horasLength = horario.getHoras().length;
         for (int i = 0; i < horasLength; ++i) {
             View horaView = layoutInflater.inflate(R.layout.funcion_horarios_hora, null, false);
             LinearLayout layout = (LinearLayout) horaView.findViewById(R.id.layout);
@@ -129,7 +129,7 @@ public class FuncionHorariosAdapter extends BaseExpandableListAdapter
             } else {
                 layout.setBackground(App.getColorDrawable());
             }
-            hora.setText(horario.horas[i]);
+            hora.setText(horario.getHoras()[i]);
             hora.setTypeface(App.getRobotoTypeface());
             holder.funcionHoras.addView(horaView);
         }

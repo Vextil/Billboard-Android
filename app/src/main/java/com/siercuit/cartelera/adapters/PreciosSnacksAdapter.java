@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.siercuit.cartelera.App;
-import com.siercuit.cartelera.POJOs.PreciosSnacksPOJO;
+import io.vextil.billboard.services.PreciosSnacksService;
 import com.siercuit.cartelera.R;
 import com.squareup.picasso.Picasso;
 
@@ -19,9 +19,9 @@ import butterknife.InjectView;
 public class PreciosSnacksAdapter extends ListAsGridAdapter
 {
     private Context context;
-    private PreciosSnacksPOJO data;
+    private PreciosSnacksService data;
 
-    public PreciosSnacksAdapter(Context context, PreciosSnacksPOJO data)
+    public PreciosSnacksAdapter(Context context, PreciosSnacksService data)
     {
         super(context);
         this.context = context;
@@ -49,10 +49,10 @@ public class PreciosSnacksAdapter extends ListAsGridAdapter
             holder = (ViewHolder) view.getTag();
         }
 
-        holder.snackNombre.setText(data.snacks[position].nombre);
-        holder.snackContenido.setText(data.snacks[position].contenido);
-        holder.snackPrecio.setText(data.snacks[position].precio);
-        Picasso.with(context).load(data.imagen_url + data.snacks[position].imagen + data.imagen_extension)
+        holder.snackNombre.setText(data.getSnacks()[position].getNombre());
+        holder.snackContenido.setText(data.getSnacks()[position].getContenido());
+        holder.snackPrecio.setText(data.getSnacks()[position].getPrecio());
+        Picasso.with(context).load(data.getImagen_url() + data.getSnacks()[position].getImagen() + data.getImagen_extension())
                 .into(holder.snackImagen);
 
         return view;
@@ -73,7 +73,7 @@ public class PreciosSnacksAdapter extends ListAsGridAdapter
 
     @Override
     public int getItemCount() {
-        return data.snacks.length;
+        return data.getSnacks().length;
     }
 
     @Override

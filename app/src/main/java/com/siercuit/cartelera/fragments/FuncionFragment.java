@@ -5,10 +5,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.transition.ChangeBounds;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.animation.BounceInterpolator;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -19,7 +17,7 @@ import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.google.android.gms.ads.AdView;
 import com.siercuit.cartelera.App;
-import com.siercuit.cartelera.POJOs.FuncionPOJO;
+import io.vextil.billboard.services.FuncionService;
 import com.siercuit.cartelera.R;
 import com.siercuit.cartelera.adapters.FuncionHorariosAdapter;
 import com.siercuit.cartelera.interfaces.animationInterface;
@@ -101,10 +99,10 @@ public class FuncionFragment extends ProgressFragment
     {
         if (!isPaused()) {
 
-                App.API().getFuncion(id, new Callback<FuncionPOJO>() {
+                App.API().getFuncion(id, new Callback<FuncionService>() {
                     @Override
-                    public void success(FuncionPOJO responsePOJO, retrofit.client.Response response) {
-                        setData(responsePOJO, FuncionPOJO.class);
+                    public void success(FuncionService responsePOJO, retrofit.client.Response response) {
+                        setData(responsePOJO, FuncionService.class);
                     }
 
                     @Override
@@ -130,8 +128,8 @@ public class FuncionFragment extends ProgressFragment
             funcionPoster.setTransitionName(id);
         }
 
-        FuncionPOJO data = (FuncionPOJO) getData();
-        FuncionPOJO.Funcion funcion = data.funcion;
+        FuncionService data = (FuncionService) getData();
+        FuncionService.Funcion funcion = data.getFuncion();
 
         funcionDescripcionContainer.setOnExpandListener(new ExpandablePanel.OnExpandListener() {
             public void onCollapse(View handle, View content) {
@@ -162,12 +160,12 @@ public class FuncionFragment extends ProgressFragment
         headerText.setTypeface(App.getRobotoTypeface());
         headerText2.setTypeface(App.getRobotoTypeface());
 
-        funcionDescripcion.setText(funcion.descripcion);
-        funcionRating.setRating(funcion.rating);
-        funcionEstreno.setText(funcion.estreno);
+        funcionDescripcion.setText(funcion.getDescripcion());
+        funcionRating.setRating(funcion.getRating());
+        funcionEstreno.setText(funcion.getEstreno());
         funcionPoster.setImageResource(R.drawable.poster_holder_big);
-        Picasso.with(getActivity()).load(data.poster_url_grande + funcion.poster
-                + data.poster_extension)
+        Picasso.with(getActivity()).load(data.getPoster_url_grande() + funcion.getPoster()
+                + data.getPoster_extension())
                 .placeholder(R.drawable.poster_holder_big)
                 .into(funcionPoster, new com.squareup.picasso.Callback.EmptyCallback() {
                     @Override public void onSuccess() {
@@ -183,20 +181,20 @@ public class FuncionFragment extends ProgressFragment
                         });
                     }
                 });
-        funcionDuracion.setText(funcion.duracion);
-        funcionGenero.setText(funcion.genero);
-        funcionClasificacion.setText(funcion.clasificacion);
-        funcionRating.setRating(funcion.rating);
-        funcionRatingText.setText(funcion.rating + "%");
+        funcionDuracion.setText(funcion.getDuracion());
+        funcionGenero.setText(funcion.getGenero());
+        funcionClasificacion.setText(funcion.getClasificacion());
+        funcionRating.setRating(funcion.getRating());
+        funcionRatingText.setText(funcion.getRating() + "%");
 
         final ExpandableListView movieHorariosList = (ExpandableListView) view.findViewById(R.id.movieHorarios);
 
-        if (funcion.lenguaje.equals("esp")) {
+        if (funcion.getLenguaje().equals("esp")) {
             funcionLenguaje.setText(R.string.fi_esp);
         } else {
             funcionLenguaje.setText(R.string.fi_sub);
         }
-        if (funcion.threeD) {
+        if (funcion.getThreeD()) {
             funcion3D.setVisibility(View.VISIBLE);
             divider2.setVisibility(View.VISIBLE);
         } else {
@@ -206,7 +204,7 @@ public class FuncionFragment extends ProgressFragment
 
         movieHorariosList.addHeaderView(headerView);
         movieHorariosList.addFooterView(footerView);
-        movieHorariosList.setAdapter(new FuncionHorariosAdapter(getActivity(), funcion.salas));
+        movieHorariosList.setAdapter(new FuncionHorariosAdapter(getActivity(), funcion.getSalas()));
         movieHorariosList.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
 
             @Override

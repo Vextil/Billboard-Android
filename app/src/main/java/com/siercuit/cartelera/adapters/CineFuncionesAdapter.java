@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.siercuit.cartelera.App;
-import com.siercuit.cartelera.POJOs.FuncionesPOJO;
+import io.vextil.billboard.services.FuncionesService;
 import com.siercuit.cartelera.R;
 import com.siercuit.cartelera.views.FontIconView;
 import com.siercuit.cartelera.views.SmileyRatingView;
@@ -20,9 +20,9 @@ import butterknife.InjectView;
 public class CineFuncionesAdapter extends ListAsGridAdapter
 {
     private Context context;
-    private FuncionesPOJO data;
+    private FuncionesService data;
 
-    public CineFuncionesAdapter(Context context, FuncionesPOJO data)
+    public CineFuncionesAdapter(Context context, FuncionesService data)
     {
         super(context);
         this.context = context;
@@ -52,18 +52,18 @@ public class CineFuncionesAdapter extends ListAsGridAdapter
         }
 
 
-        FuncionesPOJO.Funciones funcion = data.funciones[position];
-        holder.funcionNombre.setText(funcion.nombre);
-        holder.funcionNombre.setTag(String.valueOf(funcion.id));
-        holder.funcionRating.setRating(funcion.rating);
-        holder.funcionRatingText.setText(funcion.rating + "%");
+        FuncionesService.Funciones funcion = data.getFunciones()[position];
+        holder.funcionNombre.setText(funcion.getNombre());
+        holder.funcionNombre.setTag(String.valueOf(funcion.getId()));
+        holder.funcionRating.setRating(funcion.getRating());
+        holder.funcionRatingText.setText(funcion.getRating() + "%");
 
-        if (funcion.lenguaje.equals("esp")) {
+        if (funcion.getLenguaje().equals("esp")) {
             holder.funcionLenguaje.setText(R.string.fi_esp);
         } else {
             holder.funcionLenguaje.setText(R.string.fi_sub);
         }
-        if (funcion.threeD) {
+        if (funcion.getThreeD()) {
             holder.funcion3D.setVisibility(View.VISIBLE);
             holder.divider2.setVisibility(View.VISIBLE);
         } else {
@@ -71,14 +71,14 @@ public class CineFuncionesAdapter extends ListAsGridAdapter
             holder.divider2.setVisibility(View.INVISIBLE);
         }
 
-        if (funcion.estreno == null) {
+        if (funcion.getEstreno() == null) {
             holder.funcionEstreno.setVisibility(View.GONE);
         } else {
-            holder.funcionEstreno.setText(funcion.estreno);
+            holder.funcionEstreno.setText(funcion.getEstreno());
             holder.funcionEstreno.setVisibility(View.VISIBLE);
         }
 
-        Picasso.with(context).load(data.poster_url + funcion.poster + data.poster_extension)
+        Picasso.with(context).load(data.getPoster_url() + funcion.getPoster() + data.getPoster_extension())
                 .placeholder(R.drawable.poster_holder_small)
                 .into(holder.funcionPoster);
 
@@ -104,7 +104,7 @@ public class CineFuncionesAdapter extends ListAsGridAdapter
 
     @Override
     public int getItemCount() {
-        return data.funciones.length;
+        return data.getFunciones().length;
     }
 
     @Override

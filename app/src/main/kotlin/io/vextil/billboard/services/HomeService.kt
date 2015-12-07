@@ -1,8 +1,8 @@
-package io.vextil.billboard.POJOs
+package io.vextil.billboard.services
 
-class HomePOJO {
+class HomeService {
     var message: String = ""
-    var poster: PosterPOJO = PosterPOJO()
+    var poster: PosterService = PosterService()
     var categories: Array<Categories> = emptyArray()
 
     class Categories {

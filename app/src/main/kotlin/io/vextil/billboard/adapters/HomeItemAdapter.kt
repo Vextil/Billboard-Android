@@ -8,14 +8,14 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import com.siercuit.cartelera.App
-import io.vextil.billboard.POJOs.HomePOJO
-import io.vextil.billboard.POJOs.PosterPOJO
+import io.vextil.billboard.services.HomeService
+import io.vextil.billboard.services.PosterService
 import com.siercuit.cartelera.R
 import com.squareup.picasso.Picasso
 import io.vextil.billboard.activities.ExpandableActivity
 import kotlinx.android.synthetic.main.home_item.view.*
 
-class HomeItemAdapter(var context: Context, var data: HomePOJO.Categories, var posterData: PosterPOJO) : RecyclerView.Adapter<HomeItemAdapter.ViewHolder>() {
+class HomeItemAdapter(var context: Context, var data: HomeService.Categories, var posterData: PosterService) : RecyclerView.Adapter<HomeItemAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeItemAdapter.ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.home_item, parent, false)

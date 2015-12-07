@@ -9,7 +9,7 @@ import android.widget.ListView;
 import com.google.android.gms.ads.AdView;
 import com.nhaarman.listviewanimations.appearance.simple.SwingLeftInAnimationAdapter;
 import com.siercuit.cartelera.App;
-import com.siercuit.cartelera.POJOs.PreciosEntradasPOJO;
+import io.vextil.billboard.services.PreciosEntradasService;
 import com.siercuit.cartelera.R;
 import com.siercuit.cartelera.adapters.PreciosEntradasAdapter;
 import com.siercuit.cartelera.interfaces.animationInterface;
@@ -49,10 +49,10 @@ public class PreciosEntradasFragment extends ProgressFragment
     public void dataFetcher()
     {
         if (!isPaused()) {
-            App.API().getPreciosEntradas(new Callback<PreciosEntradasPOJO>() {
+            App.API().getPreciosEntradas(new Callback<PreciosEntradasService>() {
                 @Override
-                public void success(PreciosEntradasPOJO responsePOJO, retrofit.client.Response response) {
-                    setData(responsePOJO, PreciosEntradasPOJO.class);
+                public void success(PreciosEntradasService responsePOJO, retrofit.client.Response response) {
+                    setData(responsePOJO, PreciosEntradasService.class);
                 }
 
                 @Override
@@ -68,7 +68,7 @@ public class PreciosEntradasFragment extends ProgressFragment
     public void viewBuilder()
     {
         LayoutInflater inflater = LayoutInflater.from(getActivity());
-        PreciosEntradasPOJO data = (PreciosEntradasPOJO) getData();
+        PreciosEntradasService data = (PreciosEntradasService) getData();
         ListView listView = (ListView) getContentView().findViewById(R.id.listView);
         View footerView = inflater.inflate(R.layout.ad_footer, null, false);
         AdView adView = (AdView) footerView.findViewById(R.id.adView);

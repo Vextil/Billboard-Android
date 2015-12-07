@@ -9,7 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.siercuit.cartelera.App;
-import com.siercuit.cartelera.POJOs.PreciosPromosPOJO;
+import io.vextil.billboard.services.PreciosPromosService;
 import com.siercuit.cartelera.R;
 
 import butterknife.ButterKnife;
@@ -18,9 +18,9 @@ import butterknife.InjectView;
 public class PreciosPromosAdapter extends BaseAdapter
 {
     private Context context;
-    private PreciosPromosPOJO.Categorias.Promos[] promos;
+    private PreciosPromosService.Categorias.Promos[] promos;
 
-    public PreciosPromosAdapter(Context context, PreciosPromosPOJO.Categorias.Promos[] promos)
+    public PreciosPromosAdapter(Context context, PreciosPromosService.Categorias.Promos[] promos)
     {
         this.context = context;
         this.promos = promos;
@@ -48,7 +48,7 @@ public class PreciosPromosAdapter extends BaseAdapter
         } else {
             holder = (ViewHolder) view.getTag();
         }
-        holder.promoNombre.setText(promos[position].nombre);
+        holder.promoNombre.setText(promos[position].getNombre());
         if (position == (getCount() - 1)) {
             holder.divider.setVisibility(View.GONE);
         } else {
