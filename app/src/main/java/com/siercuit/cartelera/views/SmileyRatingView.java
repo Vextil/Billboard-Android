@@ -3,7 +3,7 @@ package com.siercuit.cartelera.views;
 import android.content.Context;
 import android.util.AttributeSet;
 
-import com.siercuit.cartelera.R;
+import io.vextil.billboard.R;
 
 public class SmileyRatingView extends FontIconView
 {

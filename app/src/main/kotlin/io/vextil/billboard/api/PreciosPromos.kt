@@ -1,6 +1,6 @@
-package io.vextil.billboard.services
+package io.vextil.billboard.api
 
-class PreciosPromosService {
+class PreciosPromos {
     var categorias: Array<Categorias> = emptyArray()
 
     class Categorias {

@@ -8,8 +8,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.siercuit.cartelera.App;
-import io.vextil.billboard.services.PreciosEntradasService;
-import com.siercuit.cartelera.R;
+import io.vextil.billboard.api.PreciosEntradas;
+import io.vextil.billboard.R;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -17,9 +17,9 @@ import butterknife.InjectView;
 public class PreciosEntradasAdapter extends ListAsGridAdapter
 {
     private Context context;
-    private PreciosEntradasService data;
+    private PreciosEntradas data;
 
-    public PreciosEntradasAdapter(Context context, PreciosEntradasService data)
+    public PreciosEntradasAdapter(Context context, PreciosEntradas data)
     {
         super(context);
         this.context = context;
@@ -39,21 +39,21 @@ public class PreciosEntradasAdapter extends ListAsGridAdapter
             holder = (ViewHolder) view.getTag();
         }
         holder.opcionesList.removeAllViews();
-        PreciosEntradasService.Precios categoria = data.getPrecios()[position];
+        PreciosEntradas.Precios categoria = data.getPrecios()[position];
         holder.nombre.setText(categoria.getNombre().toUpperCase());
         holder.nombre.setTextColor(App.getColor());
-        PreciosEntradasService.Precios.Opciones[] opciones = categoria.getOpciones();
-        for (PreciosEntradasService.Precios.Opciones opcion : opciones) {
+        PreciosEntradas.Precios.Opciones[] opciones = categoria.getOpciones();
+        for (PreciosEntradas.Precios.Opciones opcion : opciones) {
             View opcionView = inflater.inflate(R.layout.precios_entradas_opciones_list_item, null, false);
             TextView opcionNombre = (TextView) opcionView.findViewById(R.id.nombre);
             opcionNombre.setTypeface(App.getRobotoTypeface());
             opcionNombre.setText(opcion.getNombre());
             LinearLayout horariosList = (LinearLayout) opcionView.findViewById(R.id.horariosList);
             if (opcion.getHorarios() != null) {
-                PreciosEntradasService.Precios.Opciones.Horarios[] horarios = opcion.getHorarios();
+                PreciosEntradas.Precios.Opciones.Horarios[] horarios = opcion.getHorarios();
                 int horariosLength = horarios.length;
                 for (int ii = 0; ii < horariosLength; ++ii) {
-                    PreciosEntradasService.Precios.Opciones.Horarios horario = opcion.getHorarios()[ii];
+                    PreciosEntradas.Precios.Opciones.Horarios horario = opcion.getHorarios()[ii];
                     View horarioView = inflater.inflate(R.layout.precios_entradas_horarios_list_item, null, false);
                     TextView nombre = (TextView) horarioView.findViewById(R.id.nombre);
                     nombre.setTypeface(App.getRobotoTypeface());

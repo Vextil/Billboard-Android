@@ -17,8 +17,8 @@ import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.google.android.gms.ads.AdView;
 import com.siercuit.cartelera.App;
-import io.vextil.billboard.services.FuncionService;
-import com.siercuit.cartelera.R;
+import io.vextil.billboard.api.Funcion;
+import io.vextil.billboard.R;
 import com.siercuit.cartelera.adapters.FuncionHorariosAdapter;
 import com.siercuit.cartelera.interfaces.animationInterface;
 import com.siercuit.cartelera.interfaces.colorSchemeInterface;
@@ -33,7 +33,6 @@ import com.squareup.picasso.Picasso;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import retrofit.Callback;
-import retrofit.RetrofitError;
 
 public class FuncionFragment extends ProgressFragment
 {
@@ -97,12 +96,12 @@ public class FuncionFragment extends ProgressFragment
     @Override
     public void dataFetcher()
     {
-        if (!isPaused()) {
+        /*if (!isPaused()) {
 
-                App.API().getFuncion(id, new Callback<FuncionService>() {
+                App.API().getFuncion(id, new Callback<Funcion>() {
                     @Override
-                    public void success(FuncionService responsePOJO, retrofit.client.Response response) {
-                        setData(responsePOJO, FuncionService.class);
+                    public void success(Funcion responsePOJO, retrofit.client.Response response) {
+                        setData(responsePOJO, Funcion.class);
                     }
 
                     @Override
@@ -111,7 +110,7 @@ public class FuncionFragment extends ProgressFragment
                         setContentShown(true);
                     }
                 });
-        }
+        }*/
     }
 
     @Override
@@ -128,8 +127,8 @@ public class FuncionFragment extends ProgressFragment
             funcionPoster.setTransitionName(id);
         }
 
-        FuncionService data = (FuncionService) getData();
-        FuncionService.Funcion funcion = data.getFuncion();
+        Funcion data = (Funcion) getData();
+        Funcion.Funcion funcion = data.getFuncion();
 
         funcionDescripcionContainer.setOnExpandListener(new ExpandablePanel.OnExpandListener() {
             public void onCollapse(View handle, View content) {

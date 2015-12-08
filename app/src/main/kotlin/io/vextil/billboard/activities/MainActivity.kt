@@ -11,10 +11,9 @@ import android.widget.ExpandableListView
 
 import com.google.android.gms.analytics.GoogleAnalytics
 import com.siercuit.cartelera.App
-import com.siercuit.cartelera.R
+import io.vextil.billboard.R
 import com.siercuit.cartelera.adapters.DrawerAdapter
 import com.siercuit.cartelera.utilities.ColumnCalculator
-import com.squareup.otto.Subscribe
 
 class MainActivity : ActionBarActivity() {
 
@@ -85,11 +84,6 @@ class MainActivity : ActionBarActivity() {
         } else {
             super.onBackPressed()
         }
-    }
-
-    @Subscribe
-    fun stuff() {
-
     }
 
     companion object {

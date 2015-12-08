@@ -21,7 +21,7 @@ import android.widget.TextView;
 
 import com.siercuit.cartelera.App;
 import com.siercuit.cartelera.mappers.DrawerNavItemMapper;
-import com.siercuit.cartelera.R;
+import io.vextil.billboard.R;
 import com.siercuit.cartelera.views.IndicatorView;
 
 import butterknife.ButterKnife;

@@ -9,8 +9,8 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.siercuit.cartelera.App;
-import io.vextil.billboard.services.PreciosPromosService;
-import com.siercuit.cartelera.R;
+import io.vextil.billboard.api.PreciosPromos;
+import io.vextil.billboard.R;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -18,9 +18,9 @@ import butterknife.InjectView;
 public class PreciosPromosAdapter extends BaseAdapter
 {
     private Context context;
-    private PreciosPromosService.Categorias.Promos[] promos;
+    private PreciosPromos.Categorias.Promos[] promos;
 
-    public PreciosPromosAdapter(Context context, PreciosPromosService.Categorias.Promos[] promos)
+    public PreciosPromosAdapter(Context context, PreciosPromos.Categorias.Promos[] promos)
     {
         this.context = context;
         this.promos = promos;

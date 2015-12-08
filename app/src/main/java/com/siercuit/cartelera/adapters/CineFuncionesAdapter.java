@@ -8,8 +8,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.siercuit.cartelera.App;
-import io.vextil.billboard.services.FuncionesService;
-import com.siercuit.cartelera.R;
+import io.vextil.billboard.api.Funciones;
+import io.vextil.billboard.R;
 import com.siercuit.cartelera.views.FontIconView;
 import com.siercuit.cartelera.views.SmileyRatingView;
 import com.squareup.picasso.Picasso;
@@ -20,9 +20,9 @@ import butterknife.InjectView;
 public class CineFuncionesAdapter extends ListAsGridAdapter
 {
     private Context context;
-    private FuncionesService data;
+    private Funciones data;
 
-    public CineFuncionesAdapter(Context context, FuncionesService data)
+    public CineFuncionesAdapter(Context context, Funciones data)
     {
         super(context);
         this.context = context;
@@ -52,7 +52,7 @@ public class CineFuncionesAdapter extends ListAsGridAdapter
         }
 
 
-        FuncionesService.Funciones funcion = data.getFunciones()[position];
+        Funciones.Funciones funcion = data.getFunciones()[position];
         holder.funcionNombre.setText(funcion.getNombre());
         holder.funcionNombre.setTag(String.valueOf(funcion.getId()));
         holder.funcionRating.setRating(funcion.getRating());

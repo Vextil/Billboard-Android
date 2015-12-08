@@ -1,6 +1,6 @@
-package io.vextil.billboard.services
+package io.vextil.billboard.api
 
-class PosterService {
+class Poster {
     var url: String = ""
     var sizes: Sizes = Sizes()
 

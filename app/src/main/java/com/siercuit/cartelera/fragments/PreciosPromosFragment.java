@@ -11,14 +11,13 @@ import android.widget.TextView;
 
 import com.google.android.gms.ads.AdView;
 import com.siercuit.cartelera.App;
-import io.vextil.billboard.services.PreciosPromosService;
-import com.siercuit.cartelera.R;
+import io.vextil.billboard.api.PreciosPromos;
+import io.vextil.billboard.R;
 import com.siercuit.cartelera.adapters.PreciosPromosAdapter;
 import com.siercuit.cartelera.interfaces.animationInterface;
 import com.siercuit.cartelera.utilities.ProgressFragment;
 
 import retrofit.Callback;
-import retrofit.RetrofitError;
 
 public class PreciosPromosFragment extends ProgressFragment
 {
@@ -49,11 +48,11 @@ public class PreciosPromosFragment extends ProgressFragment
     @Override
     public void dataFetcher()
     {
-        if (!isPaused()) {
-            App.API().getPreciosPromos(new Callback<PreciosPromosService>() {
+        /*if (!isPaused()) {
+            App.API().getPreciosPromos(new Callback<PreciosPromos>() {
                 @Override
-                public void success(PreciosPromosService responsePOJO, retrofit.client.Response response) {
-                    setData(responsePOJO, PreciosPromosService.class);
+                public void success(PreciosPromos responsePOJO, retrofit.client.Response response) {
+                    setData(responsePOJO, PreciosPromos.class);
                 }
 
                 @Override
@@ -62,22 +61,22 @@ public class PreciosPromosFragment extends ProgressFragment
                     setContentShown(true);
                 }
             });
-        }
+        }*/
     }
 
     @Override
     public void viewBuilder()
     {
         LayoutInflater inflater = LayoutInflater.from(getActivity());
-        PreciosPromosService data = (PreciosPromosService) getData();
+        PreciosPromos data = (PreciosPromos) getData();
         View footerView = inflater.inflate(R.layout.ad_footer, null, false);
         AdView adView = (AdView) footerView.findViewById(R.id.adView);
         LinearLayout promosCategoriasContainer = (LinearLayout) getContentView().findViewById(R.id.promosCategoriasContainer);
         int categoriasSize = data.getCategorias().length;
 
         for (int i = 0; i < categoriasSize; ++i) {
-            final PreciosPromosService.Categorias categoria = data.getCategorias()[i];
-            final PreciosPromosService.Categorias.Promos[] promos = categoria.getPromos();
+            final PreciosPromos.Categorias categoria = data.getCategorias()[i];
+            final PreciosPromos.Categorias.Promos[] promos = categoria.getPromos();
             if (promos != null) {
                 View categoriaItemView = inflater.inflate(R.layout.precios_promos_item, null);
                 TextView categoriaNombre = (TextView) categoriaItemView.findViewById(R.id.promosCategoriaNombre);
@@ -88,7 +87,7 @@ public class PreciosPromosFragment extends ProgressFragment
                 promosList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        PreciosPromosService.Categorias.Promos promo = promos[position];
+                        PreciosPromos.Categorias.Promos promo = promos[position];
                         getActivity().getSupportFragmentManager().beginTransaction()
                                 .replace(
                                         R.id.frame_container,

@@ -3,7 +3,7 @@ package io.vextil.billboard.activities
 import android.os.Bundle
 
 import com.klinker.android.sliding.SlidingActivity
-import com.siercuit.cartelera.R
+import io.vextil.billboard.R
 
 class ExpandableActivity : SlidingActivity() {
 

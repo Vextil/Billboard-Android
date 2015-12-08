@@ -3,7 +3,7 @@ package com.siercuit.cartelera.fragments;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
-import com.siercuit.cartelera.R;
+import io.vextil.billboard.R;
 import com.siercuit.cartelera.interfaces.animationInterface;
 import com.siercuit.cartelera.utilities.ProgressFragment;
 

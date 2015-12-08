@@ -12,8 +12,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.siercuit.cartelera.App;
-import io.vextil.billboard.services.FuncionService;
-import com.siercuit.cartelera.R;
+import io.vextil.billboard.api.Funcion;
+import io.vextil.billboard.R;
 import com.siercuit.cartelera.views.IndicatorView;
 
 import butterknife.ButterKnife;
@@ -22,9 +22,9 @@ import butterknife.InjectView;
 public class FuncionHorariosAdapter extends BaseExpandableListAdapter
 {
     private Context context;
-    private FuncionService.Funcion.Salas[] cines;
+    private Funcion.Funcion.Salas[] cines;
 
-    public FuncionHorariosAdapter(Context context, FuncionService.Funcion.Salas[] cines)
+    public FuncionHorariosAdapter(Context context, Funcion.Funcion.Salas[] cines)
     {
         this.context = context;
         this.cines = cines;
@@ -112,7 +112,7 @@ public class FuncionHorariosAdapter extends BaseExpandableListAdapter
         } else {
             holder = (ChildHolder) view.getTag();
         }
-        FuncionService.Funcion.Salas.Horarios horario = cines[position].getHorarios()[childPosition];
+        Funcion.Funcion.Salas.Horarios horario = cines[position].getHorarios()[childPosition];
         holder.funcionHoras.removeAllViews();
         holder.funcionDia.setText(horario.getDia());
         holder.funcionDia.setTypeface(App.getRobotoTypeface());

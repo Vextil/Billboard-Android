@@ -7,15 +7,16 @@ import android.view.LayoutInflater
 import android.widget.TextView
 
 import com.siercuit.cartelera.App
-import io.vextil.billboard.services.HomeService
-import com.siercuit.cartelera.R
+import io.vextil.billboard.api.Home
 import com.siercuit.cartelera.interfaces.animationInterface
 import com.siercuit.cartelera.utilities.ProgressFragment
+import io.vextil.billboard.R
 import io.vextil.billboard.adapters.HomeItemAdapter
 import kotlinx.android.synthetic.main.home.*
-
-import retrofit.Callback
-import retrofit.RetrofitError
+import rx.Observable
+import rx.Subscriber
+import rx.android.schedulers.AndroidSchedulers
+import rx.schedulers.Schedulers
 
 class HomeFragment() : ProgressFragment() {
 
@@ -34,22 +35,26 @@ class HomeFragment() : ProgressFragment() {
     }
 
     override fun dataFetcher() {
-        if (!isPaused) {
-            App.API().getHome(object : Callback<HomeService> {
-                override fun success(responseService: HomeService, response: retrofit.client.Response) {
-                    setData(responseService, HomeService::class.java)
-                }
+        var call: Observable<Home> = App.API().getHome()
+        call
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.computation())
+            .subscribe(object : Subscriber<Home>() {
+            override fun onCompleted() {
+            }
 
-                override fun failure(retrofitError: RetrofitError) {
-                    isContentEmpty = true
-                    setContentShown(true)
-                }
-            })
-        }
+            override fun onNext(data: Home) {
+                setData(data, Home::class.java)
+            }
+
+            override fun onError(e: Throwable) {
+                e.printStackTrace()
+            }
+        })
     }
 
     override fun viewBuilder() {
-        for (category in (data as HomeService).categories) {
+        for (category in (data as Home).categories) {
             val categoryView = LayoutInflater.from(activity).inflate(R.layout.home_category, scrollViewContainer, false)
             val categoryName = categoryView.findViewById(R.id.header_text) as TextView
             val recyclerView = categoryView.findViewById(R.id.recycler) as RecyclerView
@@ -58,7 +63,7 @@ class HomeFragment() : ProgressFragment() {
             val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             recyclerView.minimumHeight = 700
             recyclerView.layoutManager = layoutManager
-            val adapter = HomeItemAdapter(activity, category, (data as HomeService).poster)
+            val adapter = HomeItemAdapter(activity, category, (data as Home).poster)
             recyclerView.adapter = adapter
             scrollViewContainer.addView(categoryView)
         }

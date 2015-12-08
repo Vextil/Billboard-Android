@@ -9,8 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.siercuit.cartelera.App;
-import io.vextil.billboard.services.PreciosSnacksService;
-import com.siercuit.cartelera.R;
+import io.vextil.billboard.api.PreciosSnacks;
+import io.vextil.billboard.R;
 import com.squareup.picasso.Picasso;
 
 import butterknife.ButterKnife;
@@ -19,9 +19,9 @@ import butterknife.InjectView;
 public class PreciosSnacksAdapter extends ListAsGridAdapter
 {
     private Context context;
-    private PreciosSnacksService data;
+    private PreciosSnacks data;
 
-    public PreciosSnacksAdapter(Context context, PreciosSnacksService data)
+    public PreciosSnacksAdapter(Context context, PreciosSnacks data)
     {
         super(context);
         this.context = context;

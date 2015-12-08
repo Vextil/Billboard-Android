@@ -1,8 +1,8 @@
-package io.vextil.billboard.services
+package io.vextil.billboard.api
 
 import com.google.gson.annotations.SerializedName
 
-class FuncionesService {
+class Funciones {
     var poster_url: String = ""
     var poster_url_grande: String = ""
     var poster_extension: String = ""

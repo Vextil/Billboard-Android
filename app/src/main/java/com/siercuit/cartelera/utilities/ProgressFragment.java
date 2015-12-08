@@ -18,7 +18,7 @@ import android.widget.TextView;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.siercuit.cartelera.App;
-import com.siercuit.cartelera.R;
+import io.vextil.billboard.R;
 import com.siercuit.cartelera.interfaces.animationInterface;
 
 import java.io.Serializable;

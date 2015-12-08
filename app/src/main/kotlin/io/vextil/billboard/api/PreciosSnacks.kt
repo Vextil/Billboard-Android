@@ -1,6 +1,6 @@
-package io.vextil.billboard.services
+package io.vextil.billboard.api
 
-class PreciosSnacksService {
+class PreciosSnacks {
     var imagen_url: String = ""
     var imagen_extension: String = ""
     var snacks: Array<Snacks> = emptyArray()

@@ -1,8 +1,8 @@
-package io.vextil.billboard.services
+package io.vextil.billboard.api
 
-class HomeService {
+class Home {
     var message: String = ""
-    var poster: PosterService = PosterService()
+    var poster: Poster = Poster()
     var categories: Array<Categories> = emptyArray()
 
     class Categories {
