@@ -13,6 +13,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -63,7 +64,7 @@ public class App extends Application
     private static ActionBarDrawerToggle toolbarDrawerToggle;
     private static DrawerLayout toolbarDrawerLayout;
     private static boolean isToggleBurger = true;
-    private static ActionBarActivity activity;
+    private static AppCompatActivity activity;
     private static Gson gson;
 
     private static final String PROPERTY_ID = "UA-51154229-3";
@@ -137,12 +138,12 @@ public class App extends Application
         return gson;
     }
 
-    public static void setActivity(ActionBarActivity act)
+    public static void setActivity(AppCompatActivity act)
     {
         activity = act;
     }
 
-    public static ActionBarActivity getActivity()
+    public static AppCompatActivity getActivity()
     {
         return activity;
     }
@@ -169,7 +170,7 @@ public class App extends Application
         return icons;
     }
 
-    public static void buildToolbar(Toolbar toolbar, ActionBarActivity activity)
+    public static void buildToolbar(Toolbar toolbar, AppCompatActivity activity)
     {
         activity.setSupportActionBar(toolbar);
     }

@@ -2,8 +2,8 @@ package io.vextil.billboard.activities
 
 import android.os.Bundle
 import android.support.v4.widget.DrawerLayout
-import android.support.v7.app.ActionBarActivity
 import android.support.v7.app.ActionBarDrawerToggle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.Gravity
 import android.view.View
@@ -13,9 +13,16 @@ import com.google.android.gms.analytics.GoogleAnalytics
 import com.siercuit.cartelera.App
 import io.vextil.billboard.R
 import com.siercuit.cartelera.adapters.DrawerAdapter
-import com.siercuit.cartelera.utilities.ColumnCalculator
+import com.siercuit.cartelera.fragments.CineCarteleraFragment
+import com.siercuit.cartelera.fragments.CineEstrenosFragment
+import io.vextil.billboard.fragments.HomeFragment
+import io.vextil.billboard.ui.Drawer
+import io.vextil.billboard.ui.Icon
+import kotlin.properties.Delegates
 
-class MainActivity : ActionBarActivity() {
+class MainActivity : AppCompatActivity() {
+
+    private var drawerLayout: DrawerLayout by Delegates.notNull()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,15 +32,28 @@ class MainActivity : ActionBarActivity() {
         App.setActivity(this)
 
         val toolbar = findViewById(R.id.my_awesome_toolbar) as Toolbar
-        if (!ColumnCalculator.isTabletHeight(this) && ColumnCalculator.get(this) > 1) {
-            toolbar.minimumHeight = 166
-        } else if (ColumnCalculator.get(this) > 1) {
-            toolbar.minimumHeight = 116
-        }
         App.buildToolbar(toolbar, this)
 
-        drawerAdapter = DrawerAdapter(this, App.getNavItems(), supportFragmentManager)
+        val drawerAdapter = DrawerAdapter(this, App.getNavItems(), supportFragmentManager)
         drawerLayout = findViewById(R.id.drawer_layout) as DrawerLayout
+
+        val drawer = Drawer()
+                .setLayout(drawerLayout)
+                .setToolbar(toolbar)
+
+        drawer.addItem(R.string.drawer_home, R.color.cartelera_blue, Icon.HOUSE)
+                .fragment(HomeFragment::class)
+
+        drawer.addItem(R.string.drawer_cinema, R.color.cartelera_purple, Icon.MOVIE)
+            .addChild(R.string.drawer_billboard, Icon.SIGN).fragment(CineCarteleraFragment::class)
+            .addChild(R.string.drawer_premieres, Icon.STAR).fragment(CineEstrenosFragment::class)
+
+        drawer.addItem(R.string.drawer_kids, R.color.cartelera_yellow, Icon.BABY)
+            .addChild()
+
+
+
+
         val drawerList = findViewById(R.id.left_drawer) as ExpandableListView
 
         // Set onGroupClick and onChildClick
@@ -84,11 +104,6 @@ class MainActivity : ActionBarActivity() {
         } else {
             super.onBackPressed()
         }
-    }
-
-    companion object {
-        private var drawerAdapter: DrawerAdapter? = null
-        private var drawerLayout: DrawerLayout? = null
     }
 
 }
