@@ -1,7 +1,5 @@
 package io.vextil.billboard.ui
 
-import kotlin.properties.Delegates
-import kotlin.reflect.KClass
 import kotlin.reflect.KFunction
 
 class DrawerItem(title: Int, color: Int, icon: Icon) {
@@ -9,7 +7,7 @@ class DrawerItem(title: Int, color: Int, icon: Icon) {
     public val title = title
     public val color = color
     public val icon = icon
-    public var fragment: KFunction<*> by Delegates.notNull()
+    public var fragment: KFunction<*>? = null
     public val children = arrayListOf<DrawerItemChild>()
 
     fun fragment(fragment: KFunction<*>): DrawerItem {
