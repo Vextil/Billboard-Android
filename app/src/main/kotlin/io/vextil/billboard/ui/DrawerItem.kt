@@ -1,14 +1,18 @@
 package io.vextil.billboard.ui
 
+import kotlin.properties.Delegates
+import kotlin.reflect.KClass
+import kotlin.reflect.KFunction
+
 class DrawerItem(title: Int, color: Int, icon: Icon) {
 
     public val title = title
     public val color = color
     public val icon = icon
-    private var fragment: Any? = null
-    private val children = arrayListOf<DrawerItemChild>()
+    public var fragment: KFunction<*> by Delegates.notNull()
+    public val children = arrayListOf<DrawerItemChild>()
 
-    fun fragment(fragment: Any): DrawerItem {
+    fun fragment(fragment: KFunction<*>): DrawerItem {
         this.fragment = fragment
         return this
     }

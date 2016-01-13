@@ -12,10 +12,10 @@ import android.widget.ExpandableListView
 import com.google.android.gms.analytics.GoogleAnalytics
 import com.siercuit.cartelera.App
 import io.vextil.billboard.R
-import com.siercuit.cartelera.adapters.DrawerAdapter
 import com.siercuit.cartelera.fragments.*
 import io.vextil.billboard.fragments.HomeFragment
 import io.vextil.billboard.ui.Drawer
+import io.vextil.billboard.ui.DrawerAdapter
 import io.vextil.billboard.ui.Icon
 import kotlin.properties.Delegates
 
@@ -33,7 +33,6 @@ class MainActivity : AppCompatActivity() {
         val toolbar = findViewById(R.id.my_awesome_toolbar) as Toolbar
         App.buildToolbar(toolbar, this)
 
-        val drawerAdapter = DrawerAdapter(this, App.getNavItems(), supportFragmentManager)
         drawerLayout = findViewById(R.id.drawer_layout) as DrawerLayout
 
         val drawer = Drawer()
@@ -41,7 +40,7 @@ class MainActivity : AppCompatActivity() {
                 .setToolbar(toolbar)
 
         drawer.addItem(R.string.drawer_home, R.color.cartelera_blue, Icon.HOUSE)
-                .fragment(HomeFragment::class)
+                .fragment(::HomeFragment)
 
         drawer.addItem(R.string.drawer_cinema, R.color.cartelera_purple, Icon.MOVIE)
             .addChild(R.string.drawer_billboard, Icon.SIGN).fragment(CineCarteleraFragment::class)
@@ -63,6 +62,7 @@ class MainActivity : AppCompatActivity() {
         drawer.build();
 
 
+        val drawerAdapter = DrawerAdapter(this, drawer, supportFragmentManager)
         val drawerList = findViewById(R.id.left_drawer) as ExpandableListView
 
         // Set onGroupClick and onChildClick
