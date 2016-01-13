@@ -146,6 +146,7 @@ class DrawerAdapter(private val context: Context, var drawer: Drawer,
 
     fun setGroupFragment(position: Int) {
         if (!drawer.items[position].hasChild()) {
+            @Suppress("UNCHECKED_CAST")
             val fragment = (drawer.items[position].fragment as () -> Fragment)()
             fragmentManager.beginTransaction().replace(R.id.frame_container, fragment)
                     .addToBackStack((drawer.items[position].title + context.resources.getColor(drawer.items[position].color)).toString()).commit()
