@@ -12,7 +12,6 @@ import kotlinx.android.synthetic.main.home.view.*
 import kotlinx.android.synthetic.main.home_category.view.*
 import rx.Observable
 
-
 class HomeFragment : RetrofitFragment() {
 
     override fun onGetObservable(): Observable<Home> {

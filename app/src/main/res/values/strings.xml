@@ -18,5 +18,11 @@
     <string name="drawer_premieres">Premieres</string>
     <string name="drawer_cinema">Cinema</string>
     <string name="drawer_kids">Kids</string>
+    <string name="drawer_theatre">Theatre</string>
+    <string name="drawer_prices">Prices</string>
+    <string name="drawer_tickets">Tickets</string>
+    <string name="drawer_snacks">Snacks</string>
+    <string name="drawer_offers">Offers</string>
+
 
 </resources>

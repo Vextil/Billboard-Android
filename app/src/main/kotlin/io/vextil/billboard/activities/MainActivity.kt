@@ -13,8 +13,7 @@ import com.google.android.gms.analytics.GoogleAnalytics
 import com.siercuit.cartelera.App
 import io.vextil.billboard.R
 import com.siercuit.cartelera.adapters.DrawerAdapter
-import com.siercuit.cartelera.fragments.CineCarteleraFragment
-import com.siercuit.cartelera.fragments.CineEstrenosFragment
+import com.siercuit.cartelera.fragments.*
 import io.vextil.billboard.fragments.HomeFragment
 import io.vextil.billboard.ui.Drawer
 import io.vextil.billboard.ui.Icon
@@ -49,21 +48,31 @@ class MainActivity : AppCompatActivity() {
             .addChild(R.string.drawer_premieres, Icon.STAR).fragment(CineEstrenosFragment::class)
 
         drawer.addItem(R.string.drawer_kids, R.color.cartelera_yellow, Icon.BABY)
-            .addChild()
+            .addChild(R.string.drawer_billboard, Icon.SIGN).fragment(InfantilesCarteleraFragment::class)
+            .addChild(R.string.drawer_premieres, Icon.STAR).fragment(InfantilesEstrenosFragment::class)
 
+        drawer.addItem(R.string.drawer_theatre, R.color.cartelera_orange, Icon.MASKS)
+            .addChild(R.string.drawer_billboard, Icon.SIGN).fragment(TeatroCarteleraFragment::class)
+            .addChild(R.string.drawer_premieres, Icon.STAR).fragment(TeatroEstrenosFragment::class)
 
+        drawer.addItem(R.string.drawer_prices, R.color.cartelera_green, Icon.PIG)
+            .addChild(R.string.drawer_tickets, Icon.TICKET).fragment(PreciosEntradasFragment::class)
+            .addChild(R.string.drawer_snacks, Icon.FOOD).fragment(PreciosSnacksFragment::class)
+            .addChild(R.string.drawer_offers, Icon.GIFT).fragment(PreciosPromosFragment::class)
+
+        drawer.build();
 
 
         val drawerList = findViewById(R.id.left_drawer) as ExpandableListView
 
         // Set onGroupClick and onChildClick
-        drawerAdapter!!.setClickEvents(drawerLayout, drawerList)
+        drawerAdapter.setClickEvents(drawerLayout, drawerList)
         val headerView = layoutInflater.inflate(R.layout.drawer_header, null)
         drawerList.addHeaderView(headerView)
         drawerList.setAdapter(drawerAdapter)
         // Set fragment for app home
         if (savedInstanceState == null) {
-            drawerAdapter!!.setGroupFragment(0)
+            drawerAdapter.setGroupFragment(0)
         }
 
         val toolbarDrawerToggle = object : ActionBarDrawerToggle(
@@ -97,8 +106,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        if (drawerLayout!!.isDrawerOpen(Gravity.LEFT)) {
-            drawerLayout!!.closeDrawers()
+        if (drawerLayout.isDrawerOpen(Gravity.LEFT)) {
+            drawerLayout.closeDrawers()
         } else if (supportFragmentManager.backStackEntryCount == 1) {
             finish()
         } else {
