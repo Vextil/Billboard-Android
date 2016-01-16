@@ -18,7 +18,7 @@ class HomeFragment : RetrofitFragment() {
         return App.API().getHome()
     }
 
-    override fun onCreateSuccessView(data: Any) : View {
+    override fun onCreateSuccessView(data: Any): View {
         val view = inflate(R.layout.home)
         for (category in (data as Home).categories) {
             val categoryView = inflate(R.layout.home_category, view.scrollViewContainer)

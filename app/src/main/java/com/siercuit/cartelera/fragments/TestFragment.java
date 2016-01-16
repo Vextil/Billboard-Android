@@ -21,6 +21,7 @@ import com.siercuit.cartelera.utilities.ProgressFragment;
 
 import io.vextil.billboard.api.Funciones;
 import io.vextil.billboard.api.Home;
+import io.vextil.billboard.fragments.FunctionFragment;
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -131,7 +132,7 @@ public class TestFragment extends ProgressFragment
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(
                                 R.id.frame_container,
-                                FuncionFragment.newInstance(
+                                FunctionFragment.Companion.newInstance(
                                         funcionNombre.getText().toString(),
                                         (String) funcionNombre.getTag()
                                 )

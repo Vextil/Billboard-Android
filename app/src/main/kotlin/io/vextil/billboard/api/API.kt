@@ -24,8 +24,8 @@ interface API {
     @GET("/infantiles/estrenos")
     fun infantilesEstrenos() : Call<Funciones>
 
-    @GET("/funcion/{id}")
-    fun getFuncion(@Path("id") id: String): Call<Funcion>
+    @GET("/function/{id}")
+    fun getFunction(@Path("id") id: String): Observable<Function>
 
     @GET("/precios/entradas")
     fun preciosEntradas() : Call<PreciosEntradas>

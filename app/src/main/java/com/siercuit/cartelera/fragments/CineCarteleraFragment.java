@@ -18,7 +18,7 @@ import com.siercuit.cartelera.interfaces.animationInterface;
 import com.siercuit.cartelera.utilities.ColumnCalculator;
 import com.siercuit.cartelera.utilities.ProgressFragment;
 
-import retrofit.Callback;
+import io.vextil.billboard.fragments.FunctionFragment;
 
 public class CineCarteleraFragment extends ProgressFragment
 {
@@ -100,7 +100,7 @@ public class CineCarteleraFragment extends ProgressFragment
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(
                                 R.id.frame_container,
-                                FuncionFragment.newInstance(
+                                FunctionFragment.Companion.newInstance(
                                         funcionNombre.getText().toString(),
                                         (String) funcionNombre.getTag()
                                 )

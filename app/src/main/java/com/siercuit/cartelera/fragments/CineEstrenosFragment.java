@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.google.android.gms.ads.AdView;
 import com.nhaarman.listviewanimations.appearance.simple.SwingLeftInAnimationAdapter;
-import com.siercuit.cartelera.App;
 import com.siercuit.cartelera.interfaces.GridItemClickInterface;
 import io.vextil.billboard.api.Funciones;
 import io.vextil.billboard.R;
@@ -18,7 +17,7 @@ import com.siercuit.cartelera.interfaces.animationInterface;
 import com.siercuit.cartelera.utilities.ColumnCalculator;
 import com.siercuit.cartelera.utilities.ProgressFragment;
 
-import retrofit.Callback;
+import io.vextil.billboard.fragments.FunctionFragment;
 
 public class CineEstrenosFragment extends ProgressFragment
 {
@@ -90,7 +89,7 @@ public class CineEstrenosFragment extends ProgressFragment
                 getActivity().getSupportFragmentManager().beginTransaction()
                     .replace(
                             R.id.frame_container,
-                            FuncionFragment.newInstance(
+                            FunctionFragment.Companion.newInstance(
                                     funcionNombre.getText().toString(),
                                     (String) funcionNombre.getTag())
                     ).addToBackStack(funcionNombre.getText().toString()).commit();

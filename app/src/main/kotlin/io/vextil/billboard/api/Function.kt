@@ -2,7 +2,7 @@ package io.vextil.billboard.api
 
 import com.google.gson.annotations.SerializedName
 
-class Funcion {
+class Function {
     var poster_url: String = ""
     var poster_url_grande: String = ""
     var poster_extension: String = ""
