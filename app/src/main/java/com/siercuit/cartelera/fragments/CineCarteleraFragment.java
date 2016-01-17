@@ -100,10 +100,7 @@ public class CineCarteleraFragment extends ProgressFragment
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(
                                 R.id.frame_container,
-                                FunctionFragment.Companion.newInstance(
-                                        funcionNombre.getText().toString(),
-                                        (String) funcionNombre.getTag()
-                                )
+                                new FunctionFragment()
                         ).addToBackStack(funcionNombre.getText().toString()).commit();
             }
         });
