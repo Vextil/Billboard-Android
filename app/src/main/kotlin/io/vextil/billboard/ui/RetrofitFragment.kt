@@ -67,7 +67,8 @@ abstract class RetrofitFragment : Fragment() {
                 }
 
                 override fun onError(e: Throwable) {
-                    e.printStackTrace()
+                    state = State.ERROR
+                    updateState(state)
                 }
             })
     }
@@ -80,8 +81,8 @@ abstract class RetrofitFragment : Fragment() {
         }
     }
 
-    protected open fun onCreateLoadingView(): View = View(context)
-    protected open fun onCreateErrorView(): View = View(context)
+    protected open fun onCreateLoadingView(): View = inflate(R.layout.retrofit_loading)
+    protected open fun onCreateErrorView(): View = inflate(R.layout.retrofit_error)
     protected open fun onCreateSuccessView(data: Any): View = View(context)
 
     protected fun inflate(id: Int): View {
