@@ -22,7 +22,6 @@ class HomeFragment : RetrofitFragment() {
         val view = inflate(R.layout.home)
         for (category in (data as Home).categories) {
             val categoryView = inflate(R.layout.home_category, view.scrollViewContainer)
-            categoryView.header_text.typeface = App.getRobotoTypeface()
             categoryView.header_text.text = category.name
             val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             categoryView.recycler.minimumHeight = 700
