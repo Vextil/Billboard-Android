@@ -2,6 +2,7 @@ package io.vextil.billboard.ui
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -89,23 +90,25 @@ abstract class RetrofitFragment : Fragment() {
        return inflate(id, rootLayout)
     }
 
-    protected fun inflate(id: Int, container: ViewGroup): View {
+    protected fun inflate(id: Int, container: ViewGroup?): View {
         return LayoutInflater.from(context).inflate(id, container, false)
     }
 
     private fun replaceStateView(view: View) {
         if (rootLayout.childCount > 0) {
             val old = rootLayout.getChildAt(rootLayout.childCount - 1)
-            val anim = AnimationUtils.loadAnimation(context, R.anim.abc_slide_in_bottom)
-            anim.setAnimationListener(object: AnimationListener {
+            val inAnim = AnimationUtils.loadAnimation(context, R.anim.abc_slide_in_bottom)
+            val outAnim = AnimationUtils.loadAnimation(context, R.anim.abc_slide_out_bottom)
+            outAnim.setAnimationListener(object: AnimationListener {
                 override fun onAnimationStart(animation: Animation?) {}
                 override fun onAnimationRepeat(animation: Animation) {}
                 override fun onAnimationEnd(animation: Animation) {
                     rootLayout.removeView(old)
+                    rootLayout.addView(view)
+                    view.startAnimation(inAnim)
                 }
             })
-            rootLayout.addView(view)
-            view.startAnimation(anim)
+            old.startAnimation(outAnim)
         } else {
             rootLayout.addView(view)
         }
