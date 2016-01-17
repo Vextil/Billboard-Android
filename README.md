@@ -1,4 +1,4 @@
-# Cartelera-Cine - Java
+# Cartelera-Cine
 App de Android para una cartelera de cine genérica.
 
 De momento la API no esta disponible por ende la aplicación no muestra ningún dato.
