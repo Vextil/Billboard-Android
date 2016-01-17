@@ -8,8 +8,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.siercuit.cartelera.App;
-import io.vextil.billboard.api.PreciosEntradas;
-import io.vextil.billboard.R;
+import com.siercuit.cartelera.POJOs.PreciosEntradasPOJO;
+import com.siercuit.cartelera.R;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -17,9 +17,9 @@ import butterknife.InjectView;
 public class PreciosEntradasAdapter extends ListAsGridAdapter
 {
     private Context context;
-    private PreciosEntradas data;
+    private PreciosEntradasPOJO data;
 
-    public PreciosEntradasAdapter(Context context, PreciosEntradas data)
+    public PreciosEntradasAdapter(Context context, PreciosEntradasPOJO data)
     {
         super(context);
         this.context = context;
@@ -39,29 +39,29 @@ public class PreciosEntradasAdapter extends ListAsGridAdapter
             holder = (ViewHolder) view.getTag();
         }
         holder.opcionesList.removeAllViews();
-        PreciosEntradas.Precios categoria = data.getPrecios()[position];
-        holder.nombre.setText(categoria.getNombre().toUpperCase());
+        PreciosEntradasPOJO.Precios categoria = data.precios[position];
+        holder.nombre.setText(categoria.nombre.toUpperCase());
         holder.nombre.setTextColor(App.getColor());
-        PreciosEntradas.Precios.Opciones[] opciones = categoria.getOpciones();
-        for (PreciosEntradas.Precios.Opciones opcion : opciones) {
+        PreciosEntradasPOJO.Precios.Opciones[] opciones = categoria.opciones;
+        for (PreciosEntradasPOJO.Precios.Opciones opcion : opciones) {
             View opcionView = inflater.inflate(R.layout.precios_entradas_opciones_list_item, null, false);
             TextView opcionNombre = (TextView) opcionView.findViewById(R.id.nombre);
             opcionNombre.setTypeface(App.getRobotoTypeface());
-            opcionNombre.setText(opcion.getNombre());
+            opcionNombre.setText(opcion.nombre);
             LinearLayout horariosList = (LinearLayout) opcionView.findViewById(R.id.horariosList);
-            if (opcion.getHorarios() != null) {
-                PreciosEntradas.Precios.Opciones.Horarios[] horarios = opcion.getHorarios();
+            if (opcion.horarios != null) {
+                PreciosEntradasPOJO.Precios.Opciones.Horarios[] horarios = opcion.horarios;
                 int horariosLength = horarios.length;
                 for (int ii = 0; ii < horariosLength; ++ii) {
-                    PreciosEntradas.Precios.Opciones.Horarios horario = opcion.getHorarios()[ii];
+                    PreciosEntradasPOJO.Precios.Opciones.Horarios horario = opcion.horarios[ii];
                     View horarioView = inflater.inflate(R.layout.precios_entradas_horarios_list_item, null, false);
                     TextView nombre = (TextView) horarioView.findViewById(R.id.nombre);
                     nombre.setTypeface(App.getRobotoTypeface());
-                    nombre.setText(horario.getNombre());
+                    nombre.setText(horario.nombre);
                     TextView nombreSub = (TextView) horarioView.findViewById(R.id.nombreSub);
                     nombreSub.setTypeface(App.getRobotoTypeface());
-                    if (horario.getNombre_sub() != null) {
-                        nombreSub.setText(horario.getNombre_sub());
+                    if (horario.nombre_sub != null) {
+                        nombreSub.setText(horario.nombre_sub);
                         nombreSub.setVisibility(View.VISIBLE);
                     } else {
                         nombreSub.setVisibility(View.GONE);
@@ -71,7 +71,7 @@ public class PreciosEntradasAdapter extends ListAsGridAdapter
                     }
                     TextView precio = (TextView) horarioView.findViewById(R.id.precio);
                     precio.setTypeface(App.getRobotoTypeface());
-                    precio.setText(horario.getPrecio());
+                    precio.setText(horario.precio);
                     precio.setTextColor(App.getColor());
                     horariosList.addView(horarioView);
                 }
@@ -94,7 +94,7 @@ public class PreciosEntradasAdapter extends ListAsGridAdapter
     }
 
     @Override
-    public int getItemCount() { return data.getPrecios().length; }
+    public int getItemCount() { return data.precios.length; }
 
     @Override
     public Object getItem(int position) { return position; }

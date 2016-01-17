@@ -9,15 +9,17 @@ import android.widget.TextView;
 
 import com.google.android.gms.ads.AdView;
 import com.nhaarman.listviewanimations.appearance.simple.SwingLeftInAnimationAdapter;
+import com.siercuit.cartelera.App;
 import com.siercuit.cartelera.interfaces.GridItemClickInterface;
-import io.vextil.billboard.api.Funciones;
-import io.vextil.billboard.R;
+import com.siercuit.cartelera.POJOs.FuncionesPOJO;
+import com.siercuit.cartelera.R;
 import com.siercuit.cartelera.adapters.CineFuncionesAdapter;
 import com.siercuit.cartelera.interfaces.animationInterface;
 import com.siercuit.cartelera.utilities.ColumnCalculator;
 import com.siercuit.cartelera.utilities.ProgressFragment;
 
-import io.vextil.billboard.fragments.FunctionFragment;
+import retrofit.Callback;
+import retrofit.RetrofitError;
 
 public class CineEstrenosFragment extends ProgressFragment
 {
@@ -48,11 +50,11 @@ public class CineEstrenosFragment extends ProgressFragment
     @Override
     public void dataFetcher()
     {
-        /*if (!isPaused()) {
-            App.API().getCineEstrenos(new Callback<Funciones>() {
+        if (!isPaused()) {
+            App.API().getCineEstrenos(new Callback<FuncionesPOJO>() {
                 @Override
-                public void success(Funciones responsePOJO, retrofit.client.Response response) {
-                    setData(responsePOJO, Funciones.class);
+                public void success(FuncionesPOJO responsePOJO, retrofit.client.Response response) {
+                    setData(responsePOJO, FuncionesPOJO.class);
                 }
                 @Override
                 public void failure(RetrofitError retrofitError) {
@@ -60,22 +62,22 @@ public class CineEstrenosFragment extends ProgressFragment
                     setContentShown(true);
                 }
             });
-        }*/
+        }
     }
 
     @Override
     public void viewBuilder()
     {
         LayoutInflater inflater = LayoutInflater.from(getActivity());
-        Funciones data = (Funciones) getData();
+        FuncionesPOJO data = (FuncionesPOJO) getData();
         ListView listView = (ListView) getContentView().findViewById(R.id.listView);
         View footerView = inflater.inflate(R.layout.ad_footer, null, false);
         AdView adView = (AdView) footerView.findViewById(R.id.adView);
         listView.addFooterView(footerView);
-        if (data.getMensaje() != null) {
+        if (data.mensaje != null) {
             View headerView = inflater.inflate(R.layout.mensaje_header_view, null, false);
             TextView mensaje = (TextView) headerView.findViewById(R.id.mensaje);
-            mensaje.setText(data.getMensaje());
+            mensaje.setText(data.mensaje);
             listView.addHeaderView(headerView);
         }
         CineFuncionesAdapter adapter = new CineFuncionesAdapter(getActivity(), data);
@@ -89,7 +91,7 @@ public class CineEstrenosFragment extends ProgressFragment
                 getActivity().getSupportFragmentManager().beginTransaction()
                     .replace(
                             R.id.frame_container,
-                            FunctionFragment.Companion.newInstance(
+                            FuncionFragment.newInstance(
                                     funcionNombre.getText().toString(),
                                     (String) funcionNombre.getTag())
                     ).addToBackStack(funcionNombre.getText().toString()).commit();

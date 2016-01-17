@@ -2,27 +2,16 @@
 <resources>
 
     <string name="app_name">Cartelera</string>
-    <string name="package_name">io.vextil.billboard</string>
+    <string name="package_name">com.siercuit.cartelera</string>
 
-    <string name="drawer_open">Drawer Open</string>
-    <string name="drawer_close">Drawer Closed</string>
+    <string name="drawer_open">Menu Deslizable Abierto</string>
+    <string name="drawer_close">Menu Deslizable Cerrado</string>
 
     <string name="admob_pub">ca-app-pub-2615646164799469/8800779372</string>
     
     <string name="menu_refresh">Recargar</string>
 
     <string name="funcion_horarios">Horarios</string>
-    <string name="funcion_informacion">Information</string>
-    <string name="drawer_billboard">Billboard</string>
-    <string name="drawer_home">Home</string>
-    <string name="drawer_premieres">Premieres</string>
-    <string name="drawer_cinema">Cinema</string>
-    <string name="drawer_kids">Kids</string>
-    <string name="drawer_theatre">Theatre</string>
-    <string name="drawer_prices">Prices</string>
-    <string name="drawer_tickets">Tickets</string>
-    <string name="drawer_snacks">Snacks</string>
-    <string name="drawer_offers">Offers</string>
-
+    <string name="funcion_informacion">Información</string>
 
 </resources>

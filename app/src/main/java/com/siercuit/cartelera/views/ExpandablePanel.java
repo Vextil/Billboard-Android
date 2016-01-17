@@ -9,7 +9,7 @@ import android.view.animation.Animation;
 import android.view.animation.Transformation;
 import android.widget.LinearLayout;
 
-import io.vextil.billboard.R;
+import com.siercuit.cartelera.R;
 
 public class ExpandablePanel extends LinearLayout
 {

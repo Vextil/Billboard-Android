@@ -9,14 +9,15 @@ import android.widget.ListView;
 import com.google.android.gms.ads.AdView;
 import com.nhaarman.listviewanimations.appearance.simple.SwingLeftInAnimationAdapter;
 import com.siercuit.cartelera.App;
-import io.vextil.billboard.api.PreciosEntradas;
-import io.vextil.billboard.R;
+import com.siercuit.cartelera.POJOs.PreciosEntradasPOJO;
+import com.siercuit.cartelera.R;
 import com.siercuit.cartelera.adapters.PreciosEntradasAdapter;
 import com.siercuit.cartelera.interfaces.animationInterface;
 import com.siercuit.cartelera.utilities.ColumnCalculator;
 import com.siercuit.cartelera.utilities.ProgressFragment;
 
 import retrofit.Callback;
+import retrofit.RetrofitError;
 
 public class PreciosEntradasFragment extends ProgressFragment
 {
@@ -47,11 +48,11 @@ public class PreciosEntradasFragment extends ProgressFragment
     @Override
     public void dataFetcher()
     {
-        /*if (!isPaused()) {
-            App.API().getPreciosEntradas(new Callback<PreciosEntradas>() {
+        if (!isPaused()) {
+            App.API().getPreciosEntradas(new Callback<PreciosEntradasPOJO>() {
                 @Override
-                public void success(PreciosEntradas responsePOJO, retrofit.client.Response response) {
-                    setData(responsePOJO, PreciosEntradas.class);
+                public void success(PreciosEntradasPOJO responsePOJO, retrofit.client.Response response) {
+                    setData(responsePOJO, PreciosEntradasPOJO.class);
                 }
 
                 @Override
@@ -60,14 +61,14 @@ public class PreciosEntradasFragment extends ProgressFragment
                     setContentShown(true);
                 }
             });
-        }*/
+        }
     }
 
     @Override
     public void viewBuilder()
     {
         LayoutInflater inflater = LayoutInflater.from(getActivity());
-        PreciosEntradas data = (PreciosEntradas) getData();
+        PreciosEntradasPOJO data = (PreciosEntradasPOJO) getData();
         ListView listView = (ListView) getContentView().findViewById(R.id.listView);
         View footerView = inflater.inflate(R.layout.ad_footer, null, false);
         AdView adView = (AdView) footerView.findViewById(R.id.adView);

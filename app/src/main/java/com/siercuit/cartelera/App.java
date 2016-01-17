@@ -9,11 +9,11 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -33,16 +33,14 @@ import com.squareup.okhttp.Cache;
 import com.squareup.okhttp.OkHttpClient;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import io.vextil.billboard.R;
-import io.vextil.billboard.api.API;
-import retrofit.GsonConverterFactory;
-import retrofit.Retrofit;
-import retrofit.RxJavaCallAdapterFactory;
+import retrofit.RestAdapter;
+import retrofit.client.OkClient;
 
 public class App extends Application
 {
@@ -64,7 +62,7 @@ public class App extends Application
     private static ActionBarDrawerToggle toolbarDrawerToggle;
     private static DrawerLayout toolbarDrawerLayout;
     private static boolean isToggleBurger = true;
-    private static AppCompatActivity activity;
+    private static ActionBarActivity activity;
     private static Gson gson;
 
     private static final String PROPERTY_ID = "UA-51154229-3";
@@ -85,18 +83,19 @@ public class App extends Application
         OkHttpClient client = new OkHttpClient();
 
         int cacheSize = 10 * 1024 * 2048; // 20 MiB
-        File cacheDirectory = new File(context.getCacheDir().getAbsolutePath(), "BillboardAppHttpCache");
-        Cache cache = new Cache(cacheDirectory, cacheSize);
-        client.setCache(cache);
+        File cacheDirectory = new File(context.getCacheDir().getAbsolutePath(), "CarteleraAppHttpCache");
+        Cache cache = null;
+        try {
+            cache = new Cache(cacheDirectory, cacheSize);
+            client.setCache(cache);
+        } catch (IOException e) {
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .client(client)
-                .baseUrl("https://api.vextil.io/billboard/")
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+        }
 
-        service = retrofit.create(API.class);
+        RestAdapter.Builder builder = new RestAdapter.Builder();
+        builder.setEndpoint(Link());
+        builder.setClient(new OkClient(client));
+        service = builder.build().create(API.class);
 
         robotoMedium = Typeface.createFromAsset(context.getAssets(), "fonts/Roboto-Medium.ttf");
         roboto = Typeface.createFromAsset(context.getAssets(), "fonts/Roboto-Regular.ttf");
@@ -138,12 +137,12 @@ public class App extends Application
         return gson;
     }
 
-    public static void setActivity(AppCompatActivity act)
+    public static void setActivity(ActionBarActivity act)
     {
         activity = act;
     }
 
-    public static AppCompatActivity getActivity()
+    public static ActionBarActivity getActivity()
     {
         return activity;
     }
@@ -170,7 +169,7 @@ public class App extends Application
         return icons;
     }
 
-    public static void buildToolbar(Toolbar toolbar, AppCompatActivity activity)
+    public static void buildToolbar(Toolbar toolbar, ActionBarActivity activity)
     {
         activity.setSupportActionBar(toolbar);
     }
@@ -267,8 +266,7 @@ public class App extends Application
     {
         setColorScheme(bitmap, new colorSchemeInterface() {
             @Override
-            public void onPaletteGenerated(Integer color) {
-            }
+            public void onPaletteGenerated(Integer color) {}
         });
     }
 
@@ -305,6 +303,10 @@ public class App extends Application
         return colorDrawable;
     }
 
+    public static String Link()
+    {
+        return "http://api.vextil.io/billboard/";
+    }
 
     public static String[] getCinemaNames()
     {
@@ -328,7 +330,7 @@ public class App extends Application
         List<String> childFragments;
 
         // INICIO group
-        navItems.add(new DrawerNavItemMapper("Inicio", R.string.fi_house, R.color.cartelera_blue, "io.vextil.billboard.fragments.HomeFragment"));
+        navItems.add(new DrawerNavItemMapper("Inicio", R.string.fi_house, R.color.cartelera_blue, "fragments.HomeFragment"));
 
         // CINE group
         child = new ArrayList<String>();

@@ -3,7 +3,7 @@ package com.siercuit.cartelera.views;
 import android.content.Context;
 import android.util.AttributeSet;
 
-import io.vextil.billboard.R;
+import com.siercuit.cartelera.R;
 
 public class IndicatorView extends FontIconView
 {
