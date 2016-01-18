@@ -2,7 +2,6 @@ package io.vextil.billboard.ui
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,7 +22,7 @@ abstract class RetrofitFragment : Fragment() {
     private val BUNDLE_ID = "state"
     private var rootLayout: FrameLayout by Delegates.notNull()
     private var state : State = State.LOADING
-    private var data : Any = Any()
+    private var data : Any? = null
 
     enum class State {
         LOADING, ERROR, SUCCESS
@@ -32,9 +31,6 @@ abstract class RetrofitFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         retainInstance = true
-        if (savedInstanceState != null) {
-            state = savedInstanceState.get(BUNDLE_ID) as State
-        }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -45,8 +41,14 @@ abstract class RetrofitFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
         rootLayout = FrameLayout(activity)
         rootLayout.id = android.R.id.content
+        if (savedInstanceState != null) {
+            state = savedInstanceState.get(BUNDLE_ID) as State
+        } else {
+            if (data == null) {
+                fetchData()
+            }
+        }
         updateState(state)
-        fetchData()
         return rootLayout
     }
 
@@ -79,7 +81,7 @@ abstract class RetrofitFragment : Fragment() {
         when (state) {
             State.LOADING -> replaceStateView(onCreateLoadingView())
             State.ERROR -> replaceStateView(onCreateErrorView())
-            State.SUCCESS -> replaceStateView(onCreateSuccessView(data))
+            State.SUCCESS -> replaceStateView(onCreateSuccessView(data!!))
         }
     }
 
