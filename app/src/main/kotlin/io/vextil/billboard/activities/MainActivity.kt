@@ -13,6 +13,7 @@ import com.google.android.gms.analytics.GoogleAnalytics
 import com.siercuit.cartelera.App
 import io.vextil.billboard.R
 import com.siercuit.cartelera.fragments.*
+import io.vextil.billboard.fragments.CinemaPremiereFragment
 import io.vextil.billboard.fragments.HomeFragment
 import io.vextil.billboard.ui.Drawer
 import io.vextil.billboard.ui.DrawerAdapter
@@ -43,21 +44,21 @@ class MainActivity : AppCompatActivity() {
                 .fragment(::HomeFragment)
 
         drawer.addItem(R.string.drawer_cinema, R.color.cartelera_purple, Icon.MOVIE)
-            .addChild(R.string.drawer_billboard, Icon.SIGN).fragment(CineCarteleraFragment::class)
-            .addChild(R.string.drawer_premieres, Icon.STAR).fragment(CineEstrenosFragment::class)
+            .addChild(R.string.drawer_billboard, Icon.SIGN).fragment(::CineCarteleraFragment)
+            .addChild(R.string.drawer_premieres, Icon.STAR).fragment(::CinemaPremiereFragment)
 
         drawer.addItem(R.string.drawer_kids, R.color.cartelera_yellow, Icon.BABY)
-            .addChild(R.string.drawer_billboard, Icon.SIGN).fragment(InfantilesCarteleraFragment::class)
-            .addChild(R.string.drawer_premieres, Icon.STAR).fragment(InfantilesEstrenosFragment::class)
+            .addChild(R.string.drawer_billboard, Icon.SIGN).fragment(::InfantilesCarteleraFragment)
+            .addChild(R.string.drawer_premieres, Icon.STAR).fragment(::InfantilesEstrenosFragment)
 
         drawer.addItem(R.string.drawer_theatre, R.color.cartelera_orange, Icon.MASKS)
-            .addChild(R.string.drawer_billboard, Icon.SIGN).fragment(TeatroCarteleraFragment::class)
-            .addChild(R.string.drawer_premieres, Icon.STAR).fragment(TeatroEstrenosFragment::class)
+            .addChild(R.string.drawer_billboard, Icon.SIGN).fragment(::TeatroCarteleraFragment)
+            .addChild(R.string.drawer_premieres, Icon.STAR).fragment(::TeatroEstrenosFragment)
 
         drawer.addItem(R.string.drawer_prices, R.color.cartelera_green, Icon.PIG)
-            .addChild(R.string.drawer_tickets, Icon.TICKET).fragment(PreciosEntradasFragment::class)
-            .addChild(R.string.drawer_snacks, Icon.FOOD).fragment(PreciosSnacksFragment::class)
-            .addChild(R.string.drawer_offers, Icon.GIFT).fragment(PreciosPromosFragment::class)
+            .addChild(R.string.drawer_tickets, Icon.TICKET).fragment(::PreciosEntradasFragment)
+            .addChild(R.string.drawer_snacks, Icon.FOOD).fragment(::PreciosSnacksFragment)
+            .addChild(R.string.drawer_offers, Icon.GIFT).fragment(::PreciosPromosFragment)
 
         drawer.build();
 
