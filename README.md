@@ -1,14 +1,14 @@
-# Cartelera-Cine
-App de Android para una cartelera de cine genérica.
+# Billboard-Android
+Cinema/Theatre billboard Android app. Currently needs a lot of work to be usable on production. Ongoing transition from Java -> Kotlin.
 
-De momento la API no esta disponible por ende la aplicación no muestra ningún dato.
+API used by the app: https://github.com/Vextil/Billboard-API
 
-# Imagenes
+# Images
 
-![Inicio](https://raw.githubusercontent.com/Vextil/Cartelera-Cine/master/Screenshots/1.png)
+![Home](https://raw.githubusercontent.com/Vextil/Cartelera-Cine/master/Screenshots/1.png)
 
 ![Menu](https://raw.githubusercontent.com/Vextil/Cartelera-Cine/master/Screenshots/2.png)
 
-![Cartelera Cine](https://raw.githubusercontent.com/Vextil/Cartelera-Cine/master/Screenshots/3.png)
+![Cinema Billboard](https://raw.githubusercontent.com/Vextil/Cartelera-Cine/master/Screenshots/3.png)
 
-![Precios Entradas](https://raw.githubusercontent.com/Vextil/Cartelera-Cine/master/Screenshots/4.png)
+![Ticket Prices](https://raw.githubusercontent.com/Vextil/Cartelera-Cine/master/Screenshots/4.png)
