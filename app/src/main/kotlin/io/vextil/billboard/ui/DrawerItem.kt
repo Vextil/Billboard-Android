@@ -34,9 +34,9 @@ class DrawerItem(title: Int, color: Int, icon: Icon) {
         public val title = title
         public val icon = icon
         private val parent = parent
-        public var fragment: Any? = null
+        public var fragment: KFunction<*>? = null
 
-        fun fragment(fragment: Any): DrawerItem {
+        fun fragment(fragment: KFunction<*>): DrawerItem {
             this.fragment = fragment
             return parent
         }

@@ -13,6 +13,7 @@ import android.widget.ExpandableListView
 import android.widget.TextView
 import com.siercuit.cartelera.views.IndicatorView
 import io.vextil.billboard.R
+import kotlin.reflect.KFunction
 
 class DrawerAdapter(private val context: Context, var drawer: Drawer,
                     private val fragmentManager: FragmentManager) : BaseExpandableListAdapter() {
@@ -145,15 +146,26 @@ class DrawerAdapter(private val context: Context, var drawer: Drawer,
 
     fun setGroupFragment(position: Int) {
         if (!drawer.items[position].hasChild()) {
-            @Suppress("UNCHECKED_CAST")
-            val fragment = (drawer.items[position].fragment as () -> Fragment)()
-            fragmentManager.beginTransaction().replace(R.id.frame_container, fragment)
-                    .addToBackStack(drawer.items[position].title.toString()).commit()
-
+            replaceFragment(
+                    drawer.items[position].fragment,
+                    drawer.items[position].title.toString()
+            )
         }
     }
 
     fun setChildFragment(position: Int, childPosition: Int) {
+        replaceFragment(
+                drawer.items[position].children[childPosition].fragment,
+                drawer.items[position].children[childPosition].title.toString()
+        )
+    }
+
+    private fun replaceFragment(fragmentClass: KFunction<*>?, id: String) {
+        @Suppress("UNCHECKED_CAST")
+        val fragment = (fragmentClass as () -> Fragment)()
+        fragmentManager.beginTransaction()
+                .replace(R.id.frame_container, fragment)
+                .addToBackStack(id).commit()
     }
 
 }
