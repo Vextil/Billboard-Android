@@ -22,9 +22,9 @@ import butterknife.InjectView;
 public class FuncionHorariosAdapter extends BaseExpandableListAdapter
 {
     private Context context;
-    private Function.Funcion.Salas[] cines;
+    private Function.Function.Theatres[] cines;
 
-    public FuncionHorariosAdapter(Context context, Function.Funcion.Salas[] cines)
+    public FuncionHorariosAdapter(Context context, Function.Function.Theatres[] cines)
     {
         this.context = context;
         this.cines = cines;
@@ -59,9 +59,9 @@ public class FuncionHorariosAdapter extends BaseExpandableListAdapter
         } else {
             holder = (GroupHolder) view.getTag();
         }
-        holder.horarioCine.setText(cines[position].getNombre());
+        holder.horarioCine.setText(cines[position].getName());
 
-        if (cines[position].getHorarios() == null) {
+        if (cines[position].getScreenings() == null) {
             holder.indicator.setVisibility(View.INVISIBLE);
             holder.horarioCine.setTextColor(context.getResources().getColor(R.color.card_text_disabled));
         } else {
@@ -92,10 +92,10 @@ public class FuncionHorariosAdapter extends BaseExpandableListAdapter
 
     @Override
     public int getChildrenCount(int position) {
-        if (cines[position].getHorarios() == null) {
+        if (cines[position].getScreenings() == null) {
             return 0;
         } else {
-            return cines[position].getHorarios().length;
+            return cines[position].getScreenings().length;
         }
     }
 
@@ -106,22 +106,22 @@ public class FuncionHorariosAdapter extends BaseExpandableListAdapter
         final ChildHolder holder;
         LayoutInflater layoutInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         if (view == null) {
-            view = layoutInflater.inflate(R.layout.funcion_horarios_dia, parent, false);
+            view = layoutInflater.inflate(R.layout.function_screening_day, parent, false);
             holder = new ChildHolder(view);
             view.setTag(holder);
         } else {
             holder = (ChildHolder) view.getTag();
         }
-        Function.Funcion.Salas.Horarios horario = cines[position].getHorarios()[childPosition];
+        Function.Function.Theatres.Screenings horario = cines[position].getScreenings()[childPosition];
         holder.funcionHoras.removeAllViews();
-        holder.funcionDia.setText(horario.getDia());
+        holder.funcionDia.setText(horario.getDay());
         holder.funcionDia.setTypeface(App.getRobotoTypeface());
         if (isLastChild) {
             holder.divider.setVisibility(View.INVISIBLE);
         }
-        int horasLength = horario.getHoras().length;
+        int horasLength = horario.getHours().length;
         for (int i = 0; i < horasLength; ++i) {
-            View horaView = layoutInflater.inflate(R.layout.funcion_horarios_hora, null, false);
+            View horaView = layoutInflater.inflate(R.layout.function_screening_hour, null, false);
             LinearLayout layout = (LinearLayout) horaView.findViewById(R.id.layout);
             TextView hora = (TextView) horaView.findViewById(R.id.hora);
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN){
@@ -129,7 +129,7 @@ public class FuncionHorariosAdapter extends BaseExpandableListAdapter
             } else {
                 layout.setBackground(App.getColorDrawable());
             }
-            hora.setText(horario.getHoras()[i]);
+            hora.setText(horario.getHours()[i]);
             hora.setTypeface(App.getRobotoTypeface());
             holder.funcionHoras.addView(horaView);
         }

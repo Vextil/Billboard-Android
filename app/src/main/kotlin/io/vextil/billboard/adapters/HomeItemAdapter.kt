@@ -12,7 +12,7 @@ import io.vextil.billboard.api.Home
 import io.vextil.billboard.api.Poster
 import io.vextil.billboard.R
 import com.squareup.picasso.Picasso
-import io.vextil.billboard.activities.ExpandableActivity
+import io.vextil.billboard.activities.FunctionActivity
 import kotlinx.android.synthetic.main.home_item.view.*
 
 class HomeItemAdapter(var context: Context, var data: Home.Categories, var posterData: Poster) : RecyclerView.Adapter<HomeItemAdapter.ViewHolder>() {
@@ -33,7 +33,6 @@ class HomeItemAdapter(var context: Context, var data: Home.Categories, var poste
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         init {
-            itemView.name.typeface = App.getRobotoTypeface()
             itemView.language.setTextColor(App.getColor())
             itemView.threeD.setTextColor(App.getColor())
         }
@@ -43,7 +42,7 @@ class HomeItemAdapter(var context: Context, var data: Home.Categories, var poste
             itemView.name.text = item.name
             itemView.clickableView.setOnTouchListener { v, event ->
                 if (event.action == MotionEvent.ACTION_UP) {
-                    val intent = Intent(context, ExpandableActivity::class.java)
+                    val intent = Intent(context, FunctionActivity::class.java)
                     intent.putExtra("id", item.id)
                     intent.putExtra("name", item.name)
                     context.startActivity(intent)

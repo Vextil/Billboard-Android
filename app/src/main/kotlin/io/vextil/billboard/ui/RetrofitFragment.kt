@@ -70,6 +70,7 @@ abstract class RetrofitFragment : Fragment() {
                 override fun onError(e: Throwable) {
                     state = State.ERROR
                     updateState(state)
+                    e.printStackTrace()
                 }
             })
     }

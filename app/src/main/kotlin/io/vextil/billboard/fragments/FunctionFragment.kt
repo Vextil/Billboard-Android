@@ -2,9 +2,7 @@ package io.vextil.billboard.fragments
 
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.widget.ExpandableListView
 import android.widget.TextView
 import com.siercuit.cartelera.App
 import io.vextil.billboard.api.Function
@@ -15,101 +13,93 @@ import com.siercuit.cartelera.views.ExpandablePanel
 import com.squareup.picasso.Picasso
 
 import io.vextil.billboard.ui.RetrofitFragment
-import kotlinx.android.synthetic.main.funcion_header.*
+import kotlinx.android.synthetic.main.function.view.*
+import kotlinx.android.synthetic.main.function_header.view.*
 import rx.Observable
 
 class FunctionFragment : RetrofitFragment() {
+
+    private var lastExpandedPosition = -1
+    private var id : String = ""
+
+    fun setId(id: String) {
+        this.id = id
+    }
 
     override fun onGetObservable(): Observable<Function> {
         return App.API().getFunction(id)
     }
 
-    private var id: String = ""
-    private var lastExpandedPosition = -1
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val bundle = arguments
-        id = bundle.getString("id")
         retainInstance = true
     }
 
     override fun onCreateSuccessView(data: Any): View {
-        val inflater = LayoutInflater.from(activity)
-        val view = contentView
-        val headerView = inflater.inflate(R.layout.funcion_header, null, false)
+        val view = inflate(R.layout.function)
+        val headerView = inflate(R.layout.function_header, null)
 
-        val funcion = data.funcion
+        val function = (data as Function).function
 
-        funcionDescripcionContainer.setOnExpandListener(object : ExpandablePanel.OnExpandListener {
+        headerView.funcionDescripcionContainer.setOnExpandListener(object : ExpandablePanel.OnExpandListener {
             override fun onCollapse(handle: View, content: View) {
-                funcionDescripcionIndicator.setState(false)
+                headerView.funcionDescripcionIndicator.setState(false)
             }
 
             override fun onExpand(handle: View, content: View) {
-                funcionDescripcionIndicator.setState(true)
+                headerView.funcionDescripcionIndicator.setState(true)
             }
         })
-        funcionDescripcionIndicator.setState(false)
+        headerView.funcionDescripcionIndicator.setState(false)
 
-        iconEstreno.setTextColor(App.getColor()!!)
-        iconDuracion.setTextColor(App.getColor()!!)
-        iconGenero.setTextColor(App.getColor()!!)
-        iconClasificacion.setTextColor(App.getColor()!!)
-        funcionRating.setTextColor(App.getColor()!!)
-        funcionLenguaje.setTextColor(App.getColor()!!)
-        funcion3D.setTextColor(App.getColor()!!)
-
-        funcionRatingText.typeface = App.getRobotoTypeface()
-        funcionDescripcionTitulo.typeface = App.getRobotoTypeface()
-        funcionDescripcion.typeface = App.getRobotoTypeface()
-        funcionEstreno.typeface = App.getRobotoTypeface()
-        funcionDuracion.typeface = App.getRobotoTypeface()
-        funcionGenero.typeface = App.getRobotoTypeface()
-        funcionClasificacion.typeface = App.getRobotoTypeface()
-        headerText.typeface = App.getRobotoTypeface()
-        headerText2.typeface = App.getRobotoTypeface()
-
-        funcionDescripcion.text = funcion.descripcion
-        funcionRating.setRating(funcion.rating)
-        funcionEstreno.text = funcion.estreno
-        funcionPoster.setImageResource(R.drawable.poster_holder_big)
-        Picasso.with(activity).load(data.poster_url_grande + funcion.poster
-                + data.poster_extension).placeholder(R.drawable.poster_holder_big).into(funcionPoster, object : com.squareup.picasso.Callback.EmptyCallback() {
+        headerView.funcionDescripcion.text = function.description
+        headerView.funcionRating.setRating(function.rating)
+        headerView.funcionEstreno.text = function.premiere
+        headerView.funcionPoster.setImageResource(R.drawable.poster_holder_big)
+        Picasso.with(activity).load(data.poster.getBig(function.poster))
+                .placeholder(R.drawable.poster_holder_big)
+                .into(headerView.funcionPoster, object : com.squareup.picasso.Callback.EmptyCallback() {
             override fun onSuccess() {
-                App.setColorScheme((funcionPoster.drawable as BitmapDrawable).bitmap) { color -> Animate.textColor(App.getColorNone()!!, color!!, arrayOf<TextView>(funcionRating, funcionLenguaje, funcion3D, iconEstreno, iconDuracion, iconGenero, iconClasificacion)) }
+                App.setColorScheme((headerView.funcionPoster.drawable as BitmapDrawable).bitmap) {
+                    color -> Animate.textColor(App.getColorNone()!!, color!!, arrayOf<TextView>(
+                        headerView.funcionRating,
+                        headerView.funcionLenguaje,
+                        headerView.funcion3D,
+                        headerView.iconEstreno,
+                        headerView.iconDuracion,
+                        headerView.iconGenero,
+                        headerView.iconClasificacion
+                ))}
             }
         })
-        funcionDuracion.text = funcion.duracion
-        funcionGenero.text = funcion.genero
-        funcionClasificacion.text = funcion.clasificacion
-        funcionRating.setRating(funcion.rating)
-        funcionRatingText.setText(funcion.rating + "%")
+        headerView.funcionDuracion.text = function.duration
+        headerView.funcionGenero.text = function.genre
+        headerView.funcionClasificacion.text = function.age_restriction
+        headerView.funcionRating.setRating(function.rating)
+        headerView.funcionRatingText.text = function.rating.toString() + "%"
 
-        val movieHorariosList = view.findViewById(R.id.movieHorarios) as ExpandableListView
-
-        if (funcion.lenguaje == "esp") {
-            funcionLenguaje.setText(R.string.fi_esp)
+        if (function.language == "esp") {
+            headerView.funcionLenguaje.setText(R.string.fi_esp)
         } else {
-            funcionLenguaje.setText(R.string.fi_sub)
+            headerView.funcionLenguaje.setText(R.string.fi_sub)
         }
-        if (funcion.threeD) {
-            funcion3D.visibility = View.VISIBLE
-            divider2.visibility = View.VISIBLE
+        if (function.DDD) {
+            headerView.funcion3D.visibility = View.VISIBLE
+            headerView.divider2.visibility = View.VISIBLE
         } else {
-            funcion3D.visibility = View.INVISIBLE
-            divider2.visibility = View.INVISIBLE
+            headerView.funcion3D.visibility = View.INVISIBLE
+            headerView.divider2.visibility = View.INVISIBLE
         }
 
-        movieHorariosList.addHeaderView(headerView)
-        movieHorariosList.setAdapter(FuncionHorariosAdapter(activity, funcion.salas))
-        movieHorariosList.setOnGroupExpandListener { groupPosition ->
+        view.movieHorarios.addHeaderView(headerView)
+        view.movieHorarios.setAdapter(FuncionHorariosAdapter(activity, function.theatres))
+        view.movieHorarios.setOnGroupExpandListener { groupPosition ->
             if (lastExpandedPosition != -1 && groupPosition != lastExpandedPosition) {
-                movieHorariosList.collapseGroup(lastExpandedPosition)
+                view.movieHorarios.collapseGroup(lastExpandedPosition)
             }
             lastExpandedPosition = groupPosition
         }
-
+        return view
     }
 
 }

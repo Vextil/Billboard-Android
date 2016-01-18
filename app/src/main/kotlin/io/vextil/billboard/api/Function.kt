@@ -1,34 +1,31 @@
 package io.vextil.billboard.api
 
-import com.google.gson.annotations.SerializedName
-
 class Function {
-    var poster_url: String = ""
-    var poster_url_grande: String = ""
-    var poster_extension: String = ""
-    var funcion: Funcion = Funcion()
+    var message: String = ""
+    var poster: Poster = Poster()
+    var function: Function = Function()
 
-    class Funcion {
-        var nombre: String = ""
-        var lenguaje: String = ""
-        @SerializedName("3D") var threeD: Boolean = false
+    class Function {
+        var name: String = ""
+        var language: String = ""
+        var DDD: Boolean = false
         var poster: String = ""
         var rating: Int = 0
-        var estreno: String = ""
-        var clasificacion: String = ""
-        var genero: String = ""
-        var duracion: String = ""
-        var descripcion: String = ""
-        var salas: Array<Salas> = emptyArray()
+        var premiere: String = ""
+        var age_restriction: String = ""
+        var genre: String = ""
+        var duration: String = ""
+        var description: String = ""
+        var theatres: Array<Theatres> = emptyArray()
 
-        class Salas {
+        class Theatres {
             var id: String = ""
-            var nombre: String = ""
-            var horarios: Array<Horarios> = emptyArray()
+            var name: String = ""
+            var screenings: Array<Screenings> = emptyArray()
 
-            class Horarios {
-                var dia: String = ""
-                var horas: Array<String> = emptyArray()
+            class Screenings {
+                var day: String = ""
+                var hours: Array<String> = emptyArray()
             }
         }
     }
