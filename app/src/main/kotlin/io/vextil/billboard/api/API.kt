@@ -12,8 +12,8 @@ interface API {
 
     @GET("/cine/cartelera/{slug}")
     fun getCineCartelera(@Path("slug") slug: String): Call<Functions>
-    @GET("/cine/estrenos")
-    fun cineEstrenos() : Call<Functions>
+    @GET("/cinema/premiere")
+    fun getCinemaPremiere() : Call<Functions>
     @GET("/teatro/cartelera")
     fun teatroCartelera() : Call<Functions>
     @GET("/teatro/estrenos")
