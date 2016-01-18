@@ -1,16 +1,13 @@
 package io.vextil.billboard.fragments
 
-import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.view.View
-import android.widget.TextView
 import com.siercuit.cartelera.App
 import io.vextil.billboard.api.Function
-import io.vextil.billboard.R
 import com.siercuit.cartelera.adapters.FuncionHorariosAdapter
-import com.siercuit.cartelera.utilities.Animate
 import com.siercuit.cartelera.views.ExpandablePanel
 import com.squareup.picasso.Picasso
+import io.vextil.billboard.R
 
 import io.vextil.billboard.ui.RetrofitFragment
 import kotlinx.android.synthetic.main.function.view.*
@@ -22,10 +19,6 @@ class FunctionFragment : RetrofitFragment() {
     private var lastExpandedPosition = -1
     private var id : String = ""
 
-    fun setId(id: String) {
-        this.id = id
-    }
-
     override fun onGetObservable(): Observable<Function> {
         return App.API().getFunction(id)
     }
@@ -33,6 +26,7 @@ class FunctionFragment : RetrofitFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         retainInstance = true
+        id = arguments.getString("id");
     }
 
     override fun onCreateSuccessView(data: Any): View {
@@ -58,20 +52,7 @@ class FunctionFragment : RetrofitFragment() {
         headerView.funcionPoster.setImageResource(R.drawable.poster_holder_big)
         Picasso.with(activity).load(data.poster.getBig(function.poster))
                 .placeholder(R.drawable.poster_holder_big)
-                .into(headerView.funcionPoster, object : com.squareup.picasso.Callback.EmptyCallback() {
-            override fun onSuccess() {
-                App.setColorScheme((headerView.funcionPoster.drawable as BitmapDrawable).bitmap) {
-                    color -> Animate.textColor(App.getColorNone()!!, color!!, arrayOf<TextView>(
-                        headerView.funcionRating,
-                        headerView.funcionLenguaje,
-                        headerView.funcion3D,
-                        headerView.iconEstreno,
-                        headerView.iconDuracion,
-                        headerView.iconGenero,
-                        headerView.iconClasificacion
-                ))}
-            }
-        })
+                .into(headerView.funcionPoster)
         headerView.funcionDuracion.text = function.duration
         headerView.funcionGenero.text = function.genre
         headerView.funcionClasificacion.text = function.age_restriction

@@ -11,7 +11,9 @@ class FunctionActivity : SlidingActivity() {
     override fun init(savedInstanceState: Bundle?) {
         setContent(R.layout.fragment)
         val fragment = FunctionFragment()
-        fragment.setId(intent.getStringExtra("id"))
+        var args = Bundle()
+        args.putString("id", intent.getStringExtra("id"))
+        fragment.arguments = args
         supportFragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit()
         title = intent.getStringExtra("name")
     }
