@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.google.android.gms.ads.AdView;
 import com.nhaarman.listviewanimations.appearance.simple.SwingLeftInAnimationAdapter;
 import com.siercuit.cartelera.interfaces.GridItemClickInterface;
-import io.vextil.billboard.api.Funciones;
+import io.vextil.billboard.api.Functions;
 import io.vextil.billboard.R;
 import com.siercuit.cartelera.adapters.CineFuncionesAdapter;
 import com.siercuit.cartelera.interfaces.animationInterface;
@@ -69,7 +69,7 @@ public class InfantilesCarteleraFragment extends ProgressFragment
     public void viewBuilder()
     {
         LayoutInflater inflater = LayoutInflater.from(getActivity());
-        Funciones data = (Funciones) getData();
+        Functions data = (Functions) getData();
         ListView listView = (ListView) getContentView().findViewById(R.id.listView);
         View footerView = inflater.inflate(R.layout.ad_footer, null, false);
         AdView adView = (AdView) footerView.findViewById(R.id.adView);

@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.siercuit.cartelera.App;
-import io.vextil.billboard.api.Funciones;
+import io.vextil.billboard.api.Functions;
 import io.vextil.billboard.R;
 import com.siercuit.cartelera.views.FontIconView;
 import com.siercuit.cartelera.views.SmileyRatingView;
@@ -20,9 +20,9 @@ import butterknife.InjectView;
 public class CineFuncionesAdapter extends ListAsGridAdapter
 {
     private Context context;
-    private Funciones data;
+    private Functions data;
 
-    public CineFuncionesAdapter(Context context, Funciones data)
+    public CineFuncionesAdapter(Context context, Functions data)
     {
         super(context);
         this.context = context;
@@ -52,13 +52,13 @@ public class CineFuncionesAdapter extends ListAsGridAdapter
         }
 
 
-        Funciones.Funciones funcion = data.getFunciones()[position];
-        holder.funcionNombre.setText(funcion.getNombre());
+        Functions.Functions funcion = data.getFunciones()[position];
+        holder.funcionNombre.setText(funcion.getName());
         holder.funcionNombre.setTag(String.valueOf(funcion.getId()));
         holder.funcionRating.setRating(funcion.getRating());
         holder.funcionRatingText.setText(funcion.getRating() + "%");
 
-        if (funcion.getLenguaje().equals("esp")) {
+        if (funcion.getLanguage().equals("esp")) {
             holder.funcionLenguaje.setText(R.string.fi_esp);
         } else {
             holder.funcionLenguaje.setText(R.string.fi_sub);
@@ -71,10 +71,10 @@ public class CineFuncionesAdapter extends ListAsGridAdapter
             holder.divider2.setVisibility(View.INVISIBLE);
         }
 
-        if (funcion.getEstreno() == null) {
+        if (funcion.getPremiere() == null) {
             holder.funcionEstreno.setVisibility(View.GONE);
         } else {
-            holder.funcionEstreno.setText(funcion.getEstreno());
+            holder.funcionEstreno.setText(funcion.getPremiere());
             holder.funcionEstreno.setVisibility(View.VISIBLE);
         }
 

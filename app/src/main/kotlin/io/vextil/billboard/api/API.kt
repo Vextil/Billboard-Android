@@ -11,18 +11,18 @@ interface API {
     fun getHome() : Observable<Home>
 
     @GET("/cine/cartelera/{slug}")
-    fun getCineCartelera(@Path("slug") slug: String): Call<Funciones>
+    fun getCineCartelera(@Path("slug") slug: String): Call<Functions>
     @GET("/cine/estrenos")
-    fun cineEstrenos() : Call<Funciones>
+    fun cineEstrenos() : Call<Functions>
     @GET("/teatro/cartelera")
-    fun teatroCartelera() : Call<Funciones>
+    fun teatroCartelera() : Call<Functions>
     @GET("/teatro/estrenos")
-    fun teatroEstrenos() : Call<Funciones>
+    fun teatroEstrenos() : Call<Functions>
 
     @GET("/infantiles/cartelera")
-    fun infantilesCartelera() : Call<Funciones>
+    fun infantilesCartelera() : Call<Functions>
     @GET("/infantiles/estrenos")
-    fun infantilesEstrenos() : Call<Funciones>
+    fun infantilesEstrenos() : Call<Functions>
 
     @GET("function/{id}")
     fun getFunction(@Path("id") id: String): Observable<Function>

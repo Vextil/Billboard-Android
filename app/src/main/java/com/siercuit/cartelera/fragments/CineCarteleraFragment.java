@@ -11,7 +11,7 @@ import com.google.android.gms.ads.AdView;
 import com.nhaarman.listviewanimations.appearance.simple.SwingLeftInAnimationAdapter;
 import com.siercuit.cartelera.App;
 import com.siercuit.cartelera.interfaces.GridItemClickInterface;
-import io.vextil.billboard.api.Funciones;
+import io.vextil.billboard.api.Functions;
 import io.vextil.billboard.R;
 import com.siercuit.cartelera.adapters.CineFuncionesAdapter;
 import com.siercuit.cartelera.interfaces.animationInterface;
@@ -75,7 +75,7 @@ public class CineCarteleraFragment extends ProgressFragment
     {
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
-        Funciones data = (Funciones) getDataFromArray();
+        Functions data = (Functions) getDataFromArray();
 
         View footerView = inflater.inflate(R.layout.ad_footer, null, false);
 
