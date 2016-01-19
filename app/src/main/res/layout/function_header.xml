@@ -33,11 +33,11 @@
             <ImageView
                 android:layout_width="112.94117647058824616124dp"
                 android:layout_height="160dp"
-                android:id="@+id/funcionPoster"
+                android:id="@+id/poster"
                 android:transitionName="funcionPoster"/>
 
             <LinearLayout
-                android:layout_toRightOf="@id/funcionPoster"
+                android:layout_toRightOf="@id/poster"
                 android:orientation="vertical"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content">
@@ -53,41 +53,41 @@
                     android:paddingBottom="3dp">
 
                     <com.siercuit.cartelera.views.SmileyRatingView
-                        android:id="@+id/funcionRating"
+                        android:id="@+id/rating"
                         android:paddingLeft="4dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="19dp"/>
 
                     <TextView
-                        android:id="@+id/funcionRatingText"
+                        android:id="@+id/ratingText"
                         android:textSize="16sp"
                         android:paddingLeft="12dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 
                     <View
-                        android:id="@+id/divider1"
+                        android:id="@+id/languageDivider"
                         android:layout_width="1dp"
                         android:layout_height="fill_parent"
                         android:background="@color/card_inner_divider"
                         android:layout_margin="7dp"/>
 
                     <com.siercuit.cartelera.views.FontIconView
-                        android:id="@+id/funcionLenguaje"
+                        android:id="@+id/language"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="27dp"/>
 
                     <View
-                        android:id="@+id/divider2"
+                        android:id="@+id/DDDdivider"
                         android:layout_width="1dp"
                         android:layout_height="fill_parent"
                         android:background="@color/card_inner_divider"
                         android:layout_margin="6dp"/>
 
                     <com.siercuit.cartelera.views.FontIconView
-                        android:id="@+id/funcion3D"
+                        android:id="@+id/DDD"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="30dp"
@@ -114,7 +114,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="16sp"
                         android:text="@string/cine_pelicula_estreno"
-                        android:id="@+id/funcionEstreno"
+                        android:id="@+id/premiere"
                         android:singleLine="true"
                         android:ellipsize="marquee"
                         android:marqueeRepeatLimit="marquee_forever"

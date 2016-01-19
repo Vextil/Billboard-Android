@@ -47,29 +47,29 @@ class FunctionFragment : RetrofitFragment() {
         headerView.funcionDescripcionIndicator.setState(false)
 
         headerView.funcionDescripcion.text = function.description
-        headerView.funcionRating.setRating(function.rating)
-        headerView.funcionEstreno.text = function.premiere
-        headerView.funcionPoster.setImageResource(R.drawable.poster_holder_big)
+        headerView.rating.setRating(function.rating)
+        headerView.premiere.text = function.premiere
+        headerView.poster.setImageResource(R.drawable.poster_holder_big)
         Picasso.with(activity).load(data.poster.getBig(function.poster))
                 .placeholder(R.drawable.poster_holder_big)
-                .into(headerView.funcionPoster)
+                .into(headerView.poster)
         headerView.funcionDuracion.text = function.duration
         headerView.funcionGenero.text = function.genre
         headerView.funcionClasificacion.text = function.age_restriction
-        headerView.funcionRating.setRating(function.rating)
-        headerView.funcionRatingText.text = function.rating.toString() + "%"
+        headerView.rating.setRating(function.rating)
+        headerView.ratingText.text = function.rating.toString() + "%"
 
         if (function.language == "esp") {
-            headerView.funcionLenguaje.setText(R.string.fi_esp)
+            headerView.language.setText(R.string.fi_esp)
         } else {
-            headerView.funcionLenguaje.setText(R.string.fi_sub)
+            headerView.language.setText(R.string.fi_sub)
         }
         if (function.DDD) {
-            headerView.funcion3D.visibility = View.VISIBLE
-            headerView.divider2.visibility = View.VISIBLE
+            headerView.DDD.visibility = View.VISIBLE
+            headerView.DDDdivider.visibility = View.VISIBLE
         } else {
-            headerView.funcion3D.visibility = View.INVISIBLE
-            headerView.divider2.visibility = View.INVISIBLE
+            headerView.DDD.visibility = View.INVISIBLE
+            headerView.DDDdivider.visibility = View.INVISIBLE
         }
 
         view.movieHorarios.addHeaderView(headerView)

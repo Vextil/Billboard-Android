@@ -13,7 +13,7 @@ import com.siercuit.cartelera.App;
 import com.siercuit.cartelera.interfaces.GridItemClickInterface;
 import io.vextil.billboard.api.Functions;
 import io.vextil.billboard.R;
-import com.siercuit.cartelera.adapters.CineFuncionesAdapter;
+import io.vextil.billboard.adapters.FunctionsAdapter;
 import com.siercuit.cartelera.interfaces.animationInterface;
 import com.siercuit.cartelera.utilities.ColumnCalculator;
 import com.siercuit.cartelera.utilities.ProgressFragment;
@@ -83,13 +83,13 @@ public class CineCarteleraFragment extends ProgressFragment
         AdView adView = (AdView) footerView.findViewById(R.id.adView);
 
         listView.addFooterView(footerView);
-        if (data.getMensaje() != null) {
+        /*if (data.getMensaje() != null) {
             View headerView = inflater.inflate(R.layout.mensaje_header_view, null, false);
             TextView mensaje = (TextView) headerView.findViewById(R.id.mensaje);
             mensaje.setText(data.getMensaje());
             listView.addHeaderView(headerView);
-        }
-        CineFuncionesAdapter adapter = new CineFuncionesAdapter(getActivity(), data);
+        }*/
+        FunctionsAdapter adapter = new FunctionsAdapter(getActivity(), data);
         adapter.setNumColumns(ColumnCalculator.get(getActivity()));
         adapter.setOnGridClickListener(new GridItemClickInterface()
         {

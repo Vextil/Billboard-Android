@@ -1,6 +1,5 @@
 package io.vextil.billboard.api
 
-import retrofit.Call
 import retrofit.http.GET
 import retrofit.http.Path
 import rx.Observable
@@ -10,27 +9,28 @@ interface API {
     @GET("home")
     fun getHome() : Observable<Home>
 
-    @GET("/cine/cartelera/{slug}")
-    fun getCineCartelera(@Path("slug") slug: String): Call<Functions>
+    @GET("cinema")
+    fun getCinema(): Observable<Functions>
     @GET("cinema/premiere")
     fun getCinemaPremiere() : Observable<Functions>
-    @GET("/teatro/cartelera")
-    fun teatroCartelera() : Call<Functions>
-    @GET("/teatro/estrenos")
-    fun teatroEstrenos() : Call<Functions>
 
-    @GET("/infantiles/cartelera")
-    fun infantilesCartelera() : Call<Functions>
-    @GET("/infantiles/estrenos")
-    fun infantilesEstrenos() : Call<Functions>
+    @GET("cinema/kids")
+    fun getKids() : Observable<Functions>
+    @GET("cinema/premiere/kids")
+    fun getKidsPremiere() : Observable<Functions>
+
+    @GET("theatre")
+    fun getTheatre() : Observable<Functions>
+    @GET("theatre/premiere")
+    fun getTheatrePremiere() : Observable<Functions>
 
     @GET("function/{id}")
     fun getFunction(@Path("id") id: String): Observable<Function>
 
-    @GET("/precios/entradas")
-    fun preciosEntradas() : Call<PreciosEntradas>
-    @GET("/precios/snacks")
-    fun preciosSnacks() : Call<PreciosSnacks>
-    @GET("/precios/promos")
-    fun preciosPromos() : Call<PreciosPromos>
+    @GET("prices/tickets")
+    fun getPricesTickets() : Observable<PreciosEntradas>
+    @GET("prices/snacks")
+    fun getPricesSnacks() : Observable<PreciosSnacks>
+    @GET("prices/pro")
+    fun getPricesOffers() : Observable<PreciosPromos>
 }
