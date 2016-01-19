@@ -1,9 +1,8 @@
 package io.vextil.billboard.ui
 
 import android.content.Context
-import android.os.Handler
 import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
+import android.support.v4.content.ContextCompat
 import android.support.v4.widget.DrawerLayout
 import android.view.LayoutInflater
 import android.view.View
@@ -13,10 +12,8 @@ import android.widget.ExpandableListView
 import android.widget.TextView
 import com.siercuit.cartelera.views.IndicatorView
 import io.vextil.billboard.R
-import kotlin.reflect.KFunction
 
-class DrawerAdapter(private val context: Context, var drawer: Drawer,
-                    private val fragmentManager: FragmentManager) : BaseExpandableListAdapter() {
+class DrawerAdapter(private val context: Context, var drawer: Drawer) : BaseExpandableListAdapter() {
 
     override fun getGroup(position: Int): Any {
         return drawer.items[position]
@@ -46,7 +43,7 @@ class DrawerAdapter(private val context: Context, var drawer: Drawer,
             holder = view.tag as GroupHolder
         }
 
-        holder.icon.setTextColor(context.resources.getColor(drawer.items[position].color))
+        holder.icon.setTextColor(ContextCompat.getColor(context, drawer.items[position].color))
         holder.icon.setText(Icon.getCharacter(drawer.items[position].icon))
         holder.title.setText(drawer.items[position].title)
         if (drawer.items[position].hasChild()) {
@@ -121,51 +118,30 @@ class DrawerAdapter(private val context: Context, var drawer: Drawer,
         return false
     }
 
-    fun setClickEvents(drawerLayout: DrawerLayout,
-                       drawerList: ExpandableListView) {
+    @Suppress("UNCHECKED_CAST")
+    fun onSelect(drawerLayout: DrawerLayout, drawerList: ExpandableListView,
+                 listener: (fragment: Fragment, title: Int, color: Int) -> Unit) {
         drawerList.setOnGroupClickListener { parent, view, position, id ->
             if (!drawer.items[position].hasChild()) {
+                listener(
+                    (drawer.items[position].fragment as () -> Fragment)(),
+                    drawer.items[position].title,
+                    drawer.items[position].color
+                )
                 drawerLayout.closeDrawer(drawerList)
-                Handler().postDelayed({ setGroupFragment(position) }, 250)
             }
-            false
+            true
         }
-
         drawerList.setOnChildClickListener { parent, view, position, childPosition, id ->
-            drawerLayout.closeDrawer(drawerList)
-            Handler().postDelayed({
-                try {
-                    setChildFragment(position, childPosition)
-                } catch (e: NoSuchMethodException) {
-                    e.printStackTrace()
-                }
-            }, 200)
-            false
-        }
-    }
-
-    fun setGroupFragment(position: Int) {
-        if (!drawer.items[position].hasChild()) {
-            replaceFragment(
-                    drawer.items[position].fragment,
-                    drawer.items[position].title.toString()
+            listener(
+                (drawer.items[position].children[childPosition].fragment as () -> Fragment)(),
+                drawer.items[position].children[childPosition].title,
+                drawer.items[position].color
             )
+            drawerLayout.closeDrawer(drawerList)
+            true
         }
-    }
 
-    fun setChildFragment(position: Int, childPosition: Int) {
-        replaceFragment(
-                drawer.items[position].children[childPosition].fragment,
-                drawer.items[position].children[childPosition].title.toString()
-        )
-    }
-
-    private fun replaceFragment(fragmentClass: KFunction<*>?, id: String) {
-        @Suppress("UNCHECKED_CAST")
-        val fragment = (fragmentClass as () -> Fragment)()
-        fragmentManager.beginTransaction()
-                .replace(R.id.frame_container, fragment)
-                .addToBackStack(id).commit()
     }
 
 }
