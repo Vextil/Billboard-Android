@@ -130,7 +130,7 @@ class DrawerAdapter(private val context: Context, var drawer: Drawer) : BaseExpa
                 )
                 drawerLayout.closeDrawer(drawerList)
             }
-            true
+            false
         }
         drawerList.setOnChildClickListener { parent, view, position, childPosition, id ->
             listener(
@@ -139,9 +139,13 @@ class DrawerAdapter(private val context: Context, var drawer: Drawer) : BaseExpa
                 drawer.items[position].color
             )
             drawerLayout.closeDrawer(drawerList)
-            true
+            false
         }
-
+        listener(
+                (drawer.items[0].fragment as () -> Fragment)(),
+                drawer.items[0].title,
+                drawer.items[0].color
+        )
     }
 
 }
