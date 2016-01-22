@@ -21,15 +21,4 @@ public class ColumnCalculator
         return columns;
     }
 
-    public static Boolean isTabletHeight(Activity activity)
-    {
-        DisplayMetrics displayMetrics = activity.getResources().getDisplayMetrics();
-        float dpHeight = displayMetrics.heightPixels / displayMetrics.density;
-        Integer columns;
-        if(dpHeight >= 550) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 }
