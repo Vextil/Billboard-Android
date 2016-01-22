@@ -142,9 +142,9 @@ class DrawerAdapter(private val context: Context, var drawer: Drawer) : BaseExpa
             false
         }
         listener(
-                (drawer.items[0].fragment as () -> Fragment)(),
-                drawer.items[0].title,
-                drawer.items[0].color
+            (drawer.items[0].fragment as () -> Fragment)(),
+            drawer.items[0].title,
+            drawer.items[0].color
         )
     }
 
