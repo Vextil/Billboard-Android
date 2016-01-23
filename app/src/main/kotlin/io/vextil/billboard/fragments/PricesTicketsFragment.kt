@@ -1,5 +1,17 @@
 package io.vextil.billboard.fragments
 
+import io.vextil.billboard.ui.RetrofitFragment
+import rx.Observable
+
+
+class PricesTicketsFragment : RetrofitFragment() {
+
+    override fun onGetObservable(): Observable<*> {
+        throw UnsupportedOperationException()
+    }
+
+}
+
 /**
 package com.siercuit.cartelera.fragments;
 

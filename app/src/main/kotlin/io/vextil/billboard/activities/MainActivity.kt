@@ -8,7 +8,6 @@ import android.view.Gravity
 import android.view.View
 
 import io.vextil.billboard.R
-import com.siercuit.cartelera.fragments.*
 import io.vextil.billboard.fragments.*
 import io.vextil.billboard.ui.Drawer
 import io.vextil.billboard.ui.Icon
@@ -42,9 +41,9 @@ class MainActivity : AppCompatActivity() {
             .addChild(R.string.drawer_premieres, Icon.STAR).fragment(::TheatrePremiereFragment)
         // Prices
         drawer.addItem(R.string.drawer_prices, R.color.cartelera_green, Icon.PIG)
-            .addChild(R.string.drawer_tickets, Icon.TICKET).fragment(::PreciosEntradasFragment)
-            .addChild(R.string.drawer_snacks, Icon.FOOD).fragment(::PreciosSnacksFragment)
-            .addChild(R.string.drawer_offers, Icon.GIFT).fragment(::PreciosPromosFragment)
+            .addChild(R.string.drawer_tickets, Icon.TICKET).fragment(::PricesTicketsFragment)
+            .addChild(R.string.drawer_snacks, Icon.FOOD).fragment(::PricesSnacksFragment)
+            .addChild(R.string.drawer_offers, Icon.GIFT).fragment(::PricesOffersFragment)
 
         drawer.build() { fragment, title, color ->
             setTitle(title)
