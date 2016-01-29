@@ -3,14 +3,14 @@ package com.siercuit.cartelera;
 import android.app.Application;
 import android.content.Context;
 import android.graphics.Typeface;
-import com.squareup.okhttp.Cache;
-import com.squareup.okhttp.OkHttpClient;
 
 import java.io.File;
 import io.vextil.billboard.api.API;
-import retrofit.GsonConverterFactory;
-import retrofit.Retrofit;
-import retrofit.RxJavaCallAdapterFactory;
+import okhttp3.Cache;
+import okhttp3.OkHttpClient;
+import retrofit2.GsonConverterFactory;
+import retrofit2.Retrofit;
+import retrofit2.RxJavaCallAdapterFactory;
 
 public class App extends Application {
     public static Context context;
@@ -27,7 +27,7 @@ public class App extends Application {
         int cacheSize = 10 * 1024 * 2048; // 20 MiB
         File cacheDirectory = new File(getCacheDir().getAbsolutePath(), "BillboardAppHttpCache");
         Cache cache = new Cache(cacheDirectory, cacheSize);
-        client.setCache(cache);
+        client = client.newBuilder().cache(cache).build();
 
         Retrofit retrofit = new Retrofit.Builder()
                 .client(client)

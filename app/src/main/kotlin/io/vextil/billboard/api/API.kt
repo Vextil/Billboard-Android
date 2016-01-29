@@ -1,7 +1,7 @@
 package io.vextil.billboard.api
 
-import retrofit.http.GET
-import retrofit.http.Path
+import retrofit2.http.GET
+import retrofit2.http.Path
 import rx.Observable
 
 interface API {
