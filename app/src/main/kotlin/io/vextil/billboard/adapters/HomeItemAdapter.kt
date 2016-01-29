@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import com.siercuit.cartelera.App
 import io.vextil.billboard.api.Home
 import io.vextil.billboard.api.Poster
 import io.vextil.billboard.R
@@ -31,11 +30,6 @@ class HomeItemAdapter(var context: Context, var data: Home.Categories, var poste
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-
-        init {
-            itemView.language.setTextColor(App.getColor())
-            itemView.threeD.setTextColor(App.getColor())
-        }
 
         fun bindData(position: Int) {
             val item = data.items[position]

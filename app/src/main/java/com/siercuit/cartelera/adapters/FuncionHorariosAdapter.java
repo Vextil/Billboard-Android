@@ -122,11 +122,6 @@ public class FuncionHorariosAdapter extends BaseExpandableListAdapter
             View horaView = layoutInflater.inflate(R.layout.function_screening_hour, null, false);
             LinearLayout layout = (LinearLayout) horaView.findViewById(R.id.layout);
             TextView hora = (TextView) horaView.findViewById(R.id.hora);
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN){
-                layout.setBackgroundDrawable(App.getColorDrawable());
-            } else {
-                layout.setBackground(App.getColorDrawable());
-            }
             hora.setText(horario.getHours()[i]);
             holder.funcionHoras.addView(horaView);
         }

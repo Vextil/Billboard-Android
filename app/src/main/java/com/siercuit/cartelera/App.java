@@ -3,15 +3,10 @@ package com.siercuit.cartelera;
 import android.app.Application;
 import android.content.Context;
 import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.support.v7.app.AppCompatActivity;
 import com.squareup.okhttp.Cache;
 import com.squareup.okhttp.OkHttpClient;
 
 import java.io.File;
-
-import io.vextil.billboard.R;
 import io.vextil.billboard.api.API;
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
@@ -23,21 +18,14 @@ public class App extends Application {
 
     private static Typeface icons;
 
-    private static Integer color;
-    private static Drawable colorDrawable;
-    private static AppCompatActivity activity;
-
-
     @Override
     public void onCreate() {
         super.onCreate();
 
-        context = getApplicationContext();
-
         OkHttpClient client = new OkHttpClient();
 
         int cacheSize = 10 * 1024 * 2048; // 20 MiB
-        File cacheDirectory = new File(context.getCacheDir().getAbsolutePath(), "BillboardAppHttpCache");
+        File cacheDirectory = new File(getCacheDir().getAbsolutePath(), "BillboardAppHttpCache");
         Cache cache = new Cache(cacheDirectory, cacheSize);
         client.setCache(cache);
 
@@ -50,19 +38,7 @@ public class App extends Application {
 
         service = retrofit.create(API.class);
 
-        icons = Typeface.createFromAsset(context.getAssets(), "fonts/icons.ttf");
-
-        color = context.getResources().getColor(R.color.cartelera_blue);
-        colorDrawable = new ColorDrawable(color);
-
-    }
-
-    public static void setActivity(AppCompatActivity act) {
-        activity = act;
-    }
-
-    public static AppCompatActivity getActivity() {
-        return activity;
+        icons = Typeface.createFromAsset(getAssets(), "fonts/icons.ttf");
     }
 
     public static API API() {
@@ -71,14 +47,6 @@ public class App extends Application {
 
     public static Typeface getIconsTypeface() {
         return icons;
-    }
-
-    public static Integer getColor() {
-        return color;
-    }
-
-    public static Drawable getColorDrawable() {
-        return colorDrawable;
     }
 
 }
