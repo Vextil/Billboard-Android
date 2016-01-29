@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.home_item.view.*
 class HomeItemAdapter(var context: Context, var data: Home.Categories, var posterData: Poster) : RecyclerView.Adapter<HomeItemAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeItemAdapter.ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.home_item, parent, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.home_item, parent, false)
         return ViewHolder(view)
     }
 
