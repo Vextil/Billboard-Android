@@ -13,9 +13,6 @@ import io.vextil.billboard.api.Function
 import io.vextil.billboard.R
 import io.vextil.billboard.ui.IndicatorView
 
-import butterknife.ButterKnife
-import butterknife.InjectView
-
 class FuncionHorariosAdapter(private val context: Context, private val theatres: Array<Function.Function.Theatres>) : BaseExpandableListAdapter() {
 
     override fun getGroup(position: Int): Any {
