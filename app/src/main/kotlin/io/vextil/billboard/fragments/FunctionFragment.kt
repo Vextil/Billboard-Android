@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import com.siercuit.cartelera.App
 import io.vextil.billboard.api.Function
-import com.siercuit.cartelera.adapters.FuncionHorariosAdapter
+import io.vextil.billboard.adapters.FuncionHorariosAdapter
 import io.vextil.billboard.ui.ExpandablePanel
 import com.squareup.picasso.Picasso
 import io.vextil.billboard.R
