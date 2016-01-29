@@ -2,7 +2,6 @@ package com.siercuit.cartelera;
 
 import android.app.Application;
 import android.content.Context;
-import android.graphics.Typeface;
 
 import java.io.File;
 import io.vextil.billboard.api.API;
@@ -13,10 +12,9 @@ import retrofit2.Retrofit;
 import retrofit2.RxJavaCallAdapterFactory;
 
 public class App extends Application {
+
     public static Context context;
     private static API service;
-
-    private static Typeface icons;
 
     @Override
     public void onCreate() {
@@ -37,16 +35,10 @@ public class App extends Application {
                 .build();
 
         service = retrofit.create(API.class);
-
-        icons = Typeface.createFromAsset(getAssets(), "fonts/icons.ttf");
     }
 
     public static API API() {
         return service;
-    }
-
-    public static Typeface getIconsTypeface() {
-        return icons;
     }
 
 }

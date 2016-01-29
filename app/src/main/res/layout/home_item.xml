@@ -53,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="6dp">
 
-                <com.siercuit.cartelera.views.FontIconView
+                <io.vextil.billboard.ui.FontIconView
                     android:textSize="24dp"
                     android:id="@+id/language"
                     android:layout_width="wrap_content"
@@ -66,7 +66,7 @@
                     android:background="@color/card_inner_divider"
                     android:layout_margin="5dp"/>
 
-                <com.siercuit.cartelera.views.FontIconView
+                <io.vextil.billboard.ui.FontIconView
                     android:textSize="24dp"
                     android:id="@+id/threeD"
                     android:text="@string/fi_3d"

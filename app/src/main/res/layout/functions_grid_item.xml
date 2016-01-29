@@ -37,7 +37,7 @@
             android:layout_below="@id/name"
             android:paddingLeft="10dp">
 
-            <com.siercuit.cartelera.views.SmileyRatingView
+            <io.vextil.billboard.ui.SmileyRatingView
                 android:id="@+id/rating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -56,7 +56,7 @@
                 android:background="@color/card_inner_divider"
                 android:layout_margin="8dp"/>
 
-            <com.siercuit.cartelera.views.FontIconView
+            <io.vextil.billboard.ui.FontIconView
                 android:id="@+id/language"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -69,7 +69,7 @@
                 android:background="@color/card_inner_divider"
                 android:layout_margin="8dp"/>
 
-            <com.siercuit.cartelera.views.FontIconView
+            <io.vextil.billboard.ui.FontIconView
                 android:id="@+id/DDD"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

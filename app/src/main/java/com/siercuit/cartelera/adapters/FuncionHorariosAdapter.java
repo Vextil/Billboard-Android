@@ -2,7 +2,6 @@ package com.siercuit.cartelera.adapters;
 
 import android.app.Activity;
 import android.content.Context;
-import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,10 +10,9 @@ import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.siercuit.cartelera.App;
 import io.vextil.billboard.api.Function;
 import io.vextil.billboard.R;
-import com.siercuit.cartelera.views.IndicatorView;
+import io.vextil.billboard.ui.IndicatorView;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;

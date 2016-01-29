@@ -52,7 +52,7 @@
                     android:paddingLeft="8dp"
                     android:paddingBottom="3dp">
 
-                    <com.siercuit.cartelera.views.SmileyRatingView
+                    <io.vextil.billboard.ui.SmileyRatingView
                         android:id="@+id/rating"
                         android:paddingLeft="4dp"
                         android:layout_width="wrap_content"
@@ -73,7 +73,7 @@
                         android:background="@color/card_inner_divider"
                         android:layout_margin="7dp"/>
 
-                    <com.siercuit.cartelera.views.FontIconView
+                    <io.vextil.billboard.ui.FontIconView
                         android:id="@+id/language"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -86,7 +86,7 @@
                         android:background="@color/card_inner_divider"
                         android:layout_margin="6dp"/>
 
-                    <com.siercuit.cartelera.views.FontIconView
+                    <io.vextil.billboard.ui.FontIconView
                         android:id="@+id/DDD"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -99,7 +99,7 @@
                     style="@style/cinePeliculaItem"
                     android:id="@+id/row2">
 
-                    <com.siercuit.cartelera.views.FontIconView
+                    <io.vextil.billboard.ui.FontIconView
                         android:layout_marginTop="3dp"
                         android:id="@+id/iconEstreno"
                         android:text="@string/fi_calendar"
@@ -128,7 +128,7 @@
                     style="@style/cinePeliculaItem"
                     android:id="@+id/row3">
 
-                    <com.siercuit.cartelera.views.FontIconView
+                    <io.vextil.billboard.ui.FontIconView
                         android:layout_marginTop="3dp"
                         android:id="@+id/iconDuracion"
                         android:text="@string/fi_clock"
@@ -151,7 +151,7 @@
                     style="@style/cinePeliculaItem"
                     android:id="@+id/row4">
 
-                    <com.siercuit.cartelera.views.FontIconView
+                    <io.vextil.billboard.ui.FontIconView
                         android:layout_marginTop="3dp"
                         android:id="@+id/iconGenero"
                         android:text="@string/fi_tag"
@@ -174,7 +174,7 @@
                     style="@style/cinePeliculaItem"
                     android:id="@+id/row5">
 
-                    <com.siercuit.cartelera.views.FontIconView
+                    <io.vextil.billboard.ui.FontIconView
                         android:layout_marginTop="3dp"
                         android:id="@+id/iconClasificacion"
                         android:text="@string/fi_baby"
@@ -236,7 +236,7 @@
                             android:paddingBottom="4dp"
                             android:text="@string/cine_funcion_descripcion"/>
 
-                        <com.siercuit.cartelera.views.IndicatorView
+                        <io.vextil.billboard.ui.IndicatorView
                             android:id="@+id/funcionDescripcionIndicator"
                             android:textSize="20dp"
                             android:textColor="@color/card_icon"

@@ -4,7 +4,7 @@
     android:layout_height="48dp"
     android:background="@color/drawer_sub_background">
 
-    <com.siercuit.cartelera.views.FontIconView
+    <io.vextil.billboard.ui.FontIconView
         android:id="@+id/icon"
         android:layout_centerInParent="true"
         android:layout_width="wrap_content"

@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import android.widget.BaseExpandableListAdapter
 import android.widget.ExpandableListView
 import android.widget.TextView
-import com.siercuit.cartelera.views.IndicatorView
+import io.vextil.billboard.ui.IndicatorView
 import io.vextil.billboard.R
 
 class DrawerAdapter(private val context: Context, var drawer: Drawer) : BaseExpandableListAdapter() {

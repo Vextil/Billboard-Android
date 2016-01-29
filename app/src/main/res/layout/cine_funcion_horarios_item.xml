@@ -24,7 +24,7 @@
             android:paddingLeft="10dp"
             android:paddingBottom="4dp"/>
 
-        <com.siercuit.cartelera.views.IndicatorView
+        <io.vextil.billboard.ui.IndicatorView
             android:id="@+id/indicator"
             android:textSize="20dp"
             android:textColor="@color/card_icon"
