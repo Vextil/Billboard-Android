@@ -1,6 +1,6 @@
 package io.vextil.billboard.fragments
 
-import com.siercuit.cartelera.App
+import io.vextil.billboard.App
 import io.vextil.billboard.api.Functions
 import rx.Observable
 

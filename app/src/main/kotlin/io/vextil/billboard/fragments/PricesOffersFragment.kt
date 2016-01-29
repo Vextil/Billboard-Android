@@ -25,7 +25,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.android.gms.ads.AdView;
-import com.siercuit.cartelera.App;
+import io.vextil.billboard.App;
 import io.vextil.billboard.api.PreciosPromos;
 import io.vextil.billboard.R;
 import com.siercuit.cartelera.adapters.PreciosPromosAdapter;

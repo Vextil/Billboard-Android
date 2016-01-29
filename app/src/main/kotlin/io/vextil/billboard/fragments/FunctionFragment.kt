@@ -2,7 +2,7 @@ package io.vextil.billboard.fragments
 
 import android.os.Bundle
 import android.view.View
-import com.siercuit.cartelera.App
+import io.vextil.billboard.App
 import io.vextil.billboard.api.Function
 import io.vextil.billboard.adapters.FuncionHorariosAdapter
 import io.vextil.billboard.ui.ExpandablePanel

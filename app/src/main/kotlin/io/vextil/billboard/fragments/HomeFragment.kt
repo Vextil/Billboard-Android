@@ -3,7 +3,7 @@ package io.vextil.billboard.fragments
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 
-import com.siercuit.cartelera.App
+import io.vextil.billboard.App
 import io.vextil.billboard.R
 import io.vextil.billboard.adapters.HomeItemAdapter
 import io.vextil.billboard.api.Home
