@@ -14,7 +14,7 @@ import com.squareup.picasso.Picasso
 import io.vextil.billboard.activities.FunctionActivity
 import kotlinx.android.synthetic.main.home_item.view.*
 
-class HomeItemAdapter(var context: Context, var data: Home.Categories, var posterData: Poster) : RecyclerView.Adapter<HomeItemAdapter.ViewHolder>() {
+class HomeItemAdapter(var context: Context, val data: Home.Categories, val poster: Poster) : RecyclerView.Adapter<HomeItemAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeItemAdapter.ViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.home_item, parent, false)
@@ -22,32 +22,29 @@ class HomeItemAdapter(var context: Context, var data: Home.Categories, var poste
     }
 
     override fun onBindViewHolder(holder: HomeItemAdapter.ViewHolder, position: Int) {
-        holder.bindData(position)
+        holder.bindData(data.items[position], poster)
     }
 
-    override fun getItemCount(): Int {
-        return data.items.size
-    }
+    override fun getItemCount() = data.items.size
 
-    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        fun bindData(position: Int) {
-            val item = data.items[position]
+        fun bindData(item: Home.Categories.Items, poster: Poster) {
             itemView.name.text = item.name
             itemView.clickableView.setOnTouchListener { v, event ->
                 if (event.action == MotionEvent.ACTION_UP) {
-                    val intent = Intent(context, FunctionActivity::class.java)
+                    val intent = Intent(itemView.context, FunctionActivity::class.java)
                     intent.putExtra("id", item.id)
                     intent.putExtra("name", item.name)
-                    context.startActivity(intent)
+                    itemView.context.startActivity(intent)
                 }
                 true
             }
-            Picasso.with(context)
-                    .load(posterData.getBig(item.poster))
+            Picasso.with(itemView.context)
+                    .load(poster.getBig(item.poster))
                     .placeholder(R.drawable.poster_holder_big)
                     .into(itemView.poster)
-            if (item.language == "") {
+            if (item.language.isEmpty()) {
                 itemView.subFooterContainer.visibility = View.GONE
             } else {
                 itemView.subFooterContainer.visibility = View.VISIBLE

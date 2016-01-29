@@ -13,7 +13,7 @@ class Home {
         class Items {
             var name: String = ""
             var poster: String = ""
-            var id: String = ""
+            var id: Int = 0
             var language: String = ""
             var DDD: Boolean = false
         }
