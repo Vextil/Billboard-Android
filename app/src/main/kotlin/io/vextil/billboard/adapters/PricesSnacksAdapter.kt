@@ -1,20 +1,10 @@
-package com.siercuit.cartelera.adapters;
+package io.vextil.billboard.adapters
 
-import android.content.Context;
-import android.os.Build;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
+class PricesSnacksAdapter {
 
-import com.siercuit.cartelera.App;
-import io.vextil.billboard.api.PreciosSnacks;
-import io.vextil.billboard.R;
-import com.squareup.picasso.Picasso;
+}
 
-import butterknife.ButterKnife;
-import butterknife.InjectView;
+/*
 
 public class PreciosSnacksAdapter extends ListAsGridAdapter
 {
@@ -85,3 +75,4 @@ public class PreciosSnacksAdapter extends ListAsGridAdapter
     }
 
 }
+ */

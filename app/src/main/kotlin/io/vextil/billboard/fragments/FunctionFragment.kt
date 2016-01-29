@@ -17,16 +17,16 @@ import rx.Observable
 class FunctionFragment : RetrofitFragment() {
 
     private var lastExpandedPosition = -1
-    private var id : String = ""
+    private var functionId: Int = 0
 
     override fun onGetObservable(): Observable<Function> {
-        return App.API().getFunction(id)
+        return App.API().getFunction(functionId)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         retainInstance = true
-        id = arguments.getString("id");
+        functionId = arguments.getInt("id");
     }
 
     override fun onCreateSuccessView(data: Any): View {

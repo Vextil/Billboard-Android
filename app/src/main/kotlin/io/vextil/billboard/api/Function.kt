@@ -1,6 +1,7 @@
 package io.vextil.billboard.api
 
 class Function {
+
     var message: String = ""
     var poster: Poster = Poster()
     var function: Function = Function()

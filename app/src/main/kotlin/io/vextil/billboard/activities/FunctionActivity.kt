@@ -12,7 +12,7 @@ class FunctionActivity : SlidingActivity() {
         setContent(R.layout.fragment)
         val fragment = FunctionFragment()
         var args = Bundle()
-        args.putString("id", intent.getStringExtra("id"))
+        args.putInt("id", intent.getIntExtra("id", 0))
         fragment.arguments = args
         supportFragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit()
         title = intent.getStringExtra("name")

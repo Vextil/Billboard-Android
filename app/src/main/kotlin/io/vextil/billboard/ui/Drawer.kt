@@ -7,12 +7,9 @@ import android.support.v7.widget.Toolbar
 import android.view.LayoutInflater
 import android.widget.ExpandableListView
 
-class Drawer (context: Context, layout: DrawerLayout, list: ExpandableListView, toolbar: Toolbar) {
+class Drawer (val context: Context, val layout: DrawerLayout,
+              val list: ExpandableListView, val toolbar: Toolbar) {
 
-    val context = context
-    val layout = layout
-    val list = list
-    val toolbar = toolbar
     var items = arrayListOf<DrawerItem>()
     var headerId = 0
 

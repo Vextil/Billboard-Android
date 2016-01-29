@@ -54,7 +54,6 @@ public class FuncionHorariosAdapter extends BaseExpandableListAdapter
                     context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
             view = mInflater.inflate(R.layout.cine_funcion_horarios_item, null);
             holder = new GroupHolder(view);
-            holder.horarioCine.setTypeface(App.getRobotoTypeface());
             view.setTag(holder);
         } else {
             holder = (GroupHolder) view.getTag();
@@ -115,7 +114,6 @@ public class FuncionHorariosAdapter extends BaseExpandableListAdapter
         Function.Function.Theatres.Screenings horario = cines[position].getScreenings()[childPosition];
         holder.funcionHoras.removeAllViews();
         holder.funcionDia.setText(horario.getDay());
-        holder.funcionDia.setTypeface(App.getRobotoTypeface());
         if (isLastChild) {
             holder.divider.setVisibility(View.INVISIBLE);
         }
@@ -130,7 +128,6 @@ public class FuncionHorariosAdapter extends BaseExpandableListAdapter
                 layout.setBackground(App.getColorDrawable());
             }
             hora.setText(horario.getHours()[i]);
-            hora.setTypeface(App.getRobotoTypeface());
             holder.funcionHoras.addView(horaView);
         }
         return view;

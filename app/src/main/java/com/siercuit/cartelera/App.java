@@ -21,8 +21,6 @@ public class App extends Application {
     public static Context context;
     private static API service;
 
-    private static Typeface robotoMedium;
-    private static Typeface roboto;
     private static Typeface icons;
 
     private static Integer color;
@@ -52,8 +50,6 @@ public class App extends Application {
 
         service = retrofit.create(API.class);
 
-        robotoMedium = Typeface.createFromAsset(context.getAssets(), "fonts/Roboto-Medium.ttf");
-        roboto = Typeface.createFromAsset(context.getAssets(), "fonts/Roboto-Regular.ttf");
         icons = Typeface.createFromAsset(context.getAssets(), "fonts/icons.ttf");
 
         color = context.getResources().getColor(R.color.cartelera_blue);
@@ -73,18 +69,9 @@ public class App extends Application {
         return service;
     }
 
-    public static Typeface getRobotoMediumTypeface() {
-        return robotoMedium;
-    }
-
-    public static Typeface getRobotoTypeface() {
-        return roboto;
-    }
-
     public static Typeface getIconsTypeface() {
         return icons;
     }
-
 
     public static Integer getColor() {
         return color;
