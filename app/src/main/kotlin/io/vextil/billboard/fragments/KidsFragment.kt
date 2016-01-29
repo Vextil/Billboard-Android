@@ -7,7 +7,7 @@ import rx.Observable
 class KidsFragment : BaseMultiLocationFragment() {
 
     override fun onGetObservable(): Observable<Functions> {
-        return App.API().getCinema()
+        return App.API().getKids()
     }
 
 }
