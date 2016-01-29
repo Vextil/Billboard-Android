@@ -205,7 +205,7 @@
             android:background="@android:color/transparent">
 
 
-            <com.siercuit.cartelera.views.ExpandablePanel
+            <io.vextil.billboard.ui.ExpandablePanel
                 app:animationDuration="0"
                 android:id="@+id/funcionDescripcionContainer"
                 android:layout_width="fill_parent"
@@ -262,7 +262,7 @@
 
                 </LinearLayout>
 
-            </com.siercuit.cartelera.views.ExpandablePanel>
+            </io.vextil.billboard.ui.ExpandablePanel>
 
         </RelativeLayout>
 

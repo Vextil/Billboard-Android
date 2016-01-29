@@ -5,7 +5,7 @@ import android.view.View
 import com.siercuit.cartelera.App
 import io.vextil.billboard.api.Function
 import com.siercuit.cartelera.adapters.FuncionHorariosAdapter
-import com.siercuit.cartelera.views.ExpandablePanel
+import io.vextil.billboard.ui.ExpandablePanel
 import com.squareup.picasso.Picasso
 import io.vextil.billboard.R
 
@@ -36,11 +36,11 @@ class FunctionFragment : RetrofitFragment() {
         val function = (data as Function).function
 
         headerView.funcionDescripcionContainer.setOnExpandListener(object : ExpandablePanel.OnExpandListener {
-            override fun onCollapse(handle: View, content: View) {
+            override fun onCollapse(handle: View?, content: View?) {
                 headerView.funcionDescripcionIndicator.setState(false)
             }
 
-            override fun onExpand(handle: View, content: View) {
+            override fun onExpand(handle: View?, content: View?) {
                 headerView.funcionDescripcionIndicator.setState(true)
             }
         })
