@@ -1,7 +1,7 @@
 package io.vextil.billboard.fragments
 
-import io.vextil.billboard.ui.RetrofitFragment
+import io.vextil.billboard.ui.RxRetrofitFragment
 
-abstract class MultiLocationFragment : RetrofitFragment() {
+abstract class MultiLocationFragment : RxRetrofitFragment() {
 
 }

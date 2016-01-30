@@ -9,12 +9,12 @@ import io.vextil.billboard.ui.ExpandablePanel
 import com.squareup.picasso.Picasso
 import io.vextil.billboard.R
 
-import io.vextil.billboard.ui.RetrofitFragment
+import io.vextil.billboard.ui.RxRetrofitFragment
 import kotlinx.android.synthetic.main.function.view.*
 import kotlinx.android.synthetic.main.function_header.view.*
 import rx.Observable
 
-class FunctionFragment : RetrofitFragment() {
+class FunctionFragment : RxRetrofitFragment() {
 
     private var lastExpandedPosition = -1
     private var functionId: Int = 0

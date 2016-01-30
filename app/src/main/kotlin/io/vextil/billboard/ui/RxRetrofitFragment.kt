@@ -17,7 +17,7 @@ import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import kotlin.properties.Delegates
 
-abstract class RetrofitFragment : Fragment() {
+abstract class RxRetrofitFragment : Fragment() {
 
     private val BUNDLE_ID = "state"
     private var rootLayout: FrameLayout by Delegates.notNull()

@@ -8,10 +8,10 @@ import io.vextil.billboard.R
 import io.vextil.billboard.adapters.FunctionsAdapter
 import io.vextil.billboard.activities.FunctionActivity
 import io.vextil.billboard.api.Functions
-import io.vextil.billboard.ui.RetrofitFragment
+import io.vextil.billboard.ui.RxRetrofitFragment
 import kotlinx.android.synthetic.main.recycler.view.*
 
-abstract class LocationFragment : RetrofitFragment() {
+abstract class LocationFragment : RxRetrofitFragment() {
 
     override fun onCreateSuccessView(data: Any): View {
         val view = inflate(R.layout.recycler)

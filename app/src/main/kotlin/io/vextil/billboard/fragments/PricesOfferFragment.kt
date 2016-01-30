@@ -1,10 +1,10 @@
 package io.vextil.billboard.fragments
 
-import io.vextil.billboard.ui.RetrofitFragment
+import io.vextil.billboard.ui.RxRetrofitFragment
 import rx.Observable
 
 
-class PricesOfferFragment : RetrofitFragment() {
+class PricesOfferFragment : RxRetrofitFragment() {
 
     override fun onGetObservable(): Observable<*> {
         throw UnsupportedOperationException()

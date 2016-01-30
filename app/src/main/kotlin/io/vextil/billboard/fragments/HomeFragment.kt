@@ -7,12 +7,12 @@ import io.vextil.billboard.App
 import io.vextil.billboard.R
 import io.vextil.billboard.adapters.HomeItemAdapter
 import io.vextil.billboard.api.Home
-import io.vextil.billboard.ui.RetrofitFragment
+import io.vextil.billboard.ui.RxRetrofitFragment
 import kotlinx.android.synthetic.main.home.view.*
 import kotlinx.android.synthetic.main.home_category.view.*
 import rx.Observable
 
-class HomeFragment : RetrofitFragment() {
+class HomeFragment : RxRetrofitFragment() {
 
     override fun onGetObservable(): Observable<Home> {
         return App.API().getHome()
