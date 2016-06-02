@@ -1,4 +1,6 @@
-# Billboard-Android
+# Billboard-Android  
+![img](https://img.shields.io/badge/license-MIT-blue.svg)
+
 Cinema/Theatre billboard Android app. Currently needs a lot of work to be usable on production. Ongoing transition from Java -> Kotlin.
 
 API used by the app: https://github.com/Vextil/Billboard-API
