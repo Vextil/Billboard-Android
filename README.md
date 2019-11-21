@@ -1,3 +1,5 @@
+**Archived repository. This was created only as a learning experience, there will be no further development.**
+
 # Billboard-Android  
 ![img](https://img.shields.io/badge/license-MIT-blue.svg)
 
